@@ -5,7 +5,7 @@ This Repo contains solutions to the coding puzzles provided by [Meta Careers](ht
 ## Progress
 ### Warmup
 | Puzzle Name | Explanation        | Python Solution    | JavaScript Solution | Java Solution      | C++ Solution       |
-| ----------- | ------------------ | ------------------ | ------------------- | ------------------ | ------------------ |
+| :---------: | :----------------: | :----------------: | :-----------------: | :----------------: | :----------------: |
 | ABCs        | :heavy_check_mark: |                    |                     |                    |                    |
 | All Wrong   | :heavy_check_mark: |                    |                     |                    |                    |
 | Battleship  | :heavy_check_mark: |                    |                     |                    |                    |
