@@ -20,7 +20,7 @@ Determine the minimum achievable expected horizontal distance traveled by the pa
 
 ## Constraints
 
-$1 \leq N \leq 500{\small,}000 \\\\ 1 \leq H_i \leq 999{\small,}999 \\\\ 0 \leq A_i < B_i \leq 1{\small,}000{\small,}000$
+$1 \leq N \leq 500{\small,}000 \\\\\n 1 \leq H_i \leq 999{\small,}999 \\\\\n 0 \leq A_i < B_i \leq 1{\small,}000{\small,}000$
 
 ## Approach
 
