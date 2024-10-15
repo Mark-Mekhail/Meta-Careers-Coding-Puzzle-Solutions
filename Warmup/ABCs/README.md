@@ -2,13 +2,13 @@
 
 ## Problem Description
 
-Given three integers *A*, *B*, and *C*, determine their sum.
+Given three integers $A$, $B$, and $C$, determine their sum.
 
-Your task is to implement the function getSum(A, B, C) which returns the sum *A* + *B* + *C*.
+Your task is to implement the function ```getSum(A, B, C)``` which returns the sum $A + B + C$.
 
 ## Constraints
 
-1 ≤ *A*,*B*,*C* ≤ 100
+$1 \leq A,B,C \leq 100$
 
 ## Approach
 
