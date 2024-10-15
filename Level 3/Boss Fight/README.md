@@ -20,4 +20,4 @@ $1 \leq B \leq 1{\small,}000{\small,}000{\small,}000$
 
 ## Approach
 
-TODO
+My approach starts by pairing two random warriors. I then attempt to improve the pair by swapping the second warrior to be whatever warrior pairs best with the first warrior to inflict the most possible damage and then swapping the first warrior with whatever warrior pairs best with the new second warrior. If the new pair improves upon the damage dealt by the old pair then I perform this operation again, otherwise I know I've found the optimal pair and I return the amount of damage this optimal pair can deal against the boss.
