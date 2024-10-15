@@ -10,7 +10,11 @@ Determine the number of positions in the painting at which a plus sign is presen
 
 ## Constraints
 
-$2 \leq N \leq 2{\small,}000{\small,}000 \\\n 1 \leq L_i \leq 1{\small,}000{\small,}000{\small,}000 \\\n D_i \in$ {U, D, L, R}
+$2 \leq N \leq 2{\small,}000{\small,}000$
+
+$1 \leq L_i \leq 1{\small,}000{\small,}000{\small,}000$
+
+$D_i \in$ {U, D, L, R}
 
 ## Approach
 

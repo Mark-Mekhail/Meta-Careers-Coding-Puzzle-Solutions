@@ -10,7 +10,9 @@ Your task is to implement the function ```getHitProbability(R, C, G)``` which re
 
 ## Constraints
 
-$1 \leq R,C \leq 100 \\\n 0 \leq G_{i,j} \leq 1$
+$1 \leq R,C \leq 100$
+
+$0 \leq G_{i,j} \leq 1$
 
 ## Approach
 

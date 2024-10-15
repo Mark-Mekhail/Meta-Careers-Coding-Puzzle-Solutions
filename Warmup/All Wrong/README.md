@@ -8,7 +8,9 @@ Your task is to implement the function ```getWrongAnswers(N, C)``` which returns
 
 ## Constraints
 
-$1 \leq N \leq 100 \\\n C _i \in \{‘‘A",‘‘B"\}$
+$1 \leq N \leq 100$
+
+$C _i \in \{‘‘A",‘‘B"\}$
 
 ## Approach
 

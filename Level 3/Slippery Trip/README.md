@@ -18,7 +18,11 @@ Determine the maximum number of coins you can collect on your trip.
 
 ## Constraints
 
-$2 \leq R,C \leq 400{\small,}000 \\\n R*C \leq 800{\small,}000 \\\n G_{i,j} \in$ {"$.$", "$*$", ">", "v"}
+$2 \leq R,C \leq 400{\small,}000$
+
+$R*C \leq 800{\small,}000$
+
+$G_{i,j} \in$ {"$.$", "$*$", ">", "v"}
 
 ## Approach
 
