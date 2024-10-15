@@ -6,30 +6,16 @@ def getMaxDamageDealt(N: int, H: List[int], D: List[int], B: int) -> float:
   damageIsSame = False
   while not damageIsSame:
     damageIsSame = True
-    for order in range(2):
-      for i in range(N):
-        if i != curPair[order]:
-          damage = calculateDamage(H, D, curPair[0], i) if order == 0 else calculateDamage(H, D, i, curPair[1])
-          if damage > curDamage:
-            damageIsSame = False
-            curDamage = damage
-            curPair[1-order] = i
-            
-    if damageIsSame:
-      tmp = curPair[0]
-      curPair[0] = curPair[1]
-      curPair[1] = tmp
-      for order in range(2):
-        for i in range(N):
-          if i != curPair[order]:
-            damage = calculateDamage(H, D, curPair[0], i) if order == 0 else calculateDamage(H, D, i, curPair[1])
-            if damage > curDamage:
-              damageIsSame = False
-              curDamage = damage
-              curPair[1-order] = i
+    for i in range(N):
+      if i != curPair[0]:
+        damage = calculateDamage(H, D, curPair[0], i)
+        if damage > curDamage:
+          damageIsSame = False
+          curDamage = damage
+          curPair[1] = i
+    curPair.reverse()
       
   return curDamage / B
   
-  
-def calculateDamage(H, D, first, second):
-  return H[first] * D[first] + H[second] * D[second] + H[first] * D[second]
+def calculateDamage(H, D, warrior1, warrior2):
+  return H[warrior1] * D[warrior1] + H[warrior2] * D[warrior2] + max(H[warrior1] * D[warrior2], H[warrior2] * D[warrior1])
