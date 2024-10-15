@@ -4,21 +4,22 @@ This Repo contains solutions to the coding puzzles provided by [Meta Careers](ht
 
 ## Progress
 ### Warmup
-| Puzzle Name | Explanation        | Python Solution    | JavaScript Solution | Java Solution      | C++ Solution       |
-| :---------: | :----------------: | :----------------: | :-----------------: | :----------------: | :----------------: |
-| ABCs        | :heavy_check_mark: |                    |                     |                    |                    |
-| All Wrong   | :heavy_check_mark: |                    |                     |                    |                    |
-| Battleship  | :heavy_check_mark: |                    |                     |                    |                    |
+| Puzzle Name | Explanation | Python Solution | JavaScript Solution | Java Solution | C++ Solution |
+| :---------: | :---------: | :-------------: | :-----------------: | :-----------: | :----------: |
+| ABCs | :heavy_check_mark: | :heavy_check_mark: |  |  |  |
+| All Wrong | :heavy_check_mark: | :heavy_check_mark: |  |  |  |
+| Battleship | :heavy_check_mark: | :heavy_check_mark: |  |  |  |
 
 ### Level 1
-- [x] Cafeteria
-- [x] Director of Photography 1
-- [x] Kaitenzushi
-- [x] Rotary Lock 1
-- [x] Scoreboard Inference 1
-- [x] Stack Stabilization 1
-- [x] Uniform Integers
-- [x] Cafeteria
+| Puzzle Name | Explanation        | Python Solution    | JavaScript Solution | Java Solution      | C++ Solution       |
+| :---------: | :----------------: | :----------------: | :-----------------: | :----------------: | :----------------: |
+| Cafeteria | :heavy_check_mark: |  |  :heavy_check_mark:  |  |
+| Director of Photography 1 | :heavy_check_mark: |  |  |  |  :heavy_check_mark:  |
+| Kaitenzushi | :heavy_check_mark: | :heavy_check_mark: |  |  |  |
+| Rotary Lock 1 | :heavy_check_mark: |  |  :heavy_check_mark:  |  |  |
+| Scoreboard Inference 1 | :heavy_check_mark: |  |  :heavy_check_mark:  |  |  |
+| Stack Stabilization 1 | :heavy_check_mark: |  |  :heavy_check_mark:  |  |  |
+| Uniform Integers | :heavy_check_mark: | :heavy_check_mark: |  |  |  |
 
 ### Level 2
 
