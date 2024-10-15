@@ -12,7 +12,7 @@ Assuming you can choose which page you begin the session on, what's the maximum 
 
 ## Constraints
 
-$2 \leq N \leq 500{\small,}000 \\\\\n 1 \leq M \leq 500{\small,}000 \\\\\n 21 \leq A_i, B_i \leq N \\\\\n A_i \neq B_i $
+$2 \leq N \leq 500{\small,}000 \\\n 1 \leq M \leq 500{\small,}000 \\\n 21 \leq A_i, B_i \leq N \\\n A_i \neq B_i $
 
 ## Approach
 

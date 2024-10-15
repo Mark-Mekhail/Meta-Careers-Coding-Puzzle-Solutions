@@ -10,7 +10,7 @@ Of course, the warriors will never prevail, but they'd like to determine the max
 
 ## Constraints
 
-$2 \leq N \leq 500{\small,}000 \\\\\n 1 \leq H_i \leq 1{\small,}000{\small,}000{\small,}000 \\\\\n 1 \leq D_i \leq 1{\small,}000{\small,}000{\small,}000 \\\\\n 1 \leq B \leq 1{\small,}000{\small,}000{\small,}000$
+$2 \leq N \leq 500{\small,}000 \\\n 1 \leq H_i \leq 1{\small,}000{\small,}000{\small,}000 \\\n 1 \leq D_i \leq 1{\small,}000{\small,}000{\small,}000 \\\n 1 \leq B \leq 1{\small,}000{\small,}000{\small,}000$
 
 ## Approach
 

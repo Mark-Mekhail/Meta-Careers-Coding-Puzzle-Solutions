@@ -14,7 +14,7 @@ Determine the minimum number of seconds needed in order to make the stack stable
 
 ## Constraints
 
-$1 \leq N \leq 50 \\\\\n 1 \leq R_i \leq 1{\small,}000{\small,}000{\small,}000 \\\\\n 1 \leq A, B \leq 100$
+$1 \leq N \leq 50 \\\n 1 \leq R_i \leq 1{\small,}000{\small,}000{\small,}000 \\\n 1 \leq A, B \leq 100$
 
 ## Approach
 
