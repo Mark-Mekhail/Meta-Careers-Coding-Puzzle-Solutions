@@ -48,5 +48,5 @@ The solutions included in this repo pass all testcases provided by Meta, includi
 ### Level 4
 | Puzzle Name               | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
 | :-----------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
-| Conveyor Chaos            |                     |                     |                     |                     |                     |
+| Conveyor Chaos            |                     | :heavy_check_mark:  |                     |                     |                     |
 | Mathematical Art          |                     |                     |                     |                     |                     |
