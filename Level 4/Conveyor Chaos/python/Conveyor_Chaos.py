@@ -149,7 +149,7 @@ def getSortedConveyors(N, H, A, B):
 def getOverlappingRanges(possiblePackageRanges, x1, x2):
     lastOverlappingRangeIndex = possiblePackageRanges.bisect_key_left(x2)
     firstOverlappingRangeIndex = max(possiblePackageRanges.bisect_key_left(x1) - 1, 0)
-    while firstOverlappingRangeIndex < lastOverlappingRangeIndex and possiblePackageRanges[firstOverlappingRangeIndex][1] <= x1:
+    if firstOverlappingRangeIndex < lastOverlappingRangeIndex and possiblePackageRanges[firstOverlappingRangeIndex][1] < x1:
         firstOverlappingRangeIndex += 1
 
     return list(possiblePackageRanges.islice(firstOverlappingRangeIndex, lastOverlappingRangeIndex))
