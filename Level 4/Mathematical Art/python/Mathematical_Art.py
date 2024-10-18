@@ -1,49 +1,50 @@
 from typing import List
 from sortedcontainers import SortedKeyList, SortedList
-import bisect
-
-# VERTICAL = "V"
-# HORIZONTAL = "H"
-
-# class Line:
-#     def __init__(self, x, y, L, D):
-#         if D == "D":
-#             self.bottomLeft = (x, y - L)
-#         elif D == "L":
-#             self.bottomLeft = (x - L, y)
-#         else:
-#             self.bottomLeft = (x, y)
-
-#         self.length = L
-#         self.direction = VERTICAL if (D == "U" or D == "D") else HORIZONTAL
   
 
 def getPlusSignCount(N: int, L: List[int], D: str) -> int:
     verticalLines, horizontalLines = getLineInfo(N, L, D)
-    horizontalYs = sorted(horizontalLines.keys())
-    numHorizontalYs = len(horizontalYs)
-
-    # print(verticalLines)
-    # print(horizontalLines)
+    horizontalLineList = []
+    for y in horizontalLines:
+        for line in horizontalLines[y]:
+            horizontalLineList.append((line[0], line[1], y))
+    
+    horizontalsByStart = sorted(horizontalLineList, key=lambda x: x[0])
+    horizontalsByEnd = sorted(horizontalLineList, key=lambda x: x[1])
+    
     plusSignCount = 0
-    for x in verticalLines:
-        for verticalLine in verticalLines[x]:
-            bottomY, topY = verticalLine
-            
-            if topY - bottomY > 1:
-                yIndex = bisect.bisect_right(horizontalYs, bottomY)
-                while yIndex < numHorizontalYs and horizontalYs[yIndex] < topY:
-                    y = horizontalYs[yIndex]
-                    yIndex += 1
+    horizontalIndices = [0, 0]
+    horizontalYs = SortedList()
+    for x in sorted(verticalLines.keys()):
+        lastHorizontalIndex = horizontalIndices[1]
+        if lastHorizontalIndex < len(horizontalsByStart):
+            lastHorizontal = horizontalsByStart[lastHorizontalIndex]
+            while lastHorizontal[0] < x:
+                horizontalYs.add(lastHorizontal[2])
+                lastHorizontalIndex += 1
+                if lastHorizontalIndex == len(horizontalsByStart):
+                    break
+                lastHorizontal = horizontalsByStart[lastHorizontalIndex]
+            horizontalIndices[1] = lastHorizontalIndex
 
-                    linesOnY = horizontalLines[y]
-                    if linesOnY[0][0] >= x or linesOnY[-1][1] <= x:
-                        continue
+        firstHorizontalIndex = horizontalIndices[0]
+        if firstHorizontalIndex < len(horizontalsByEnd):
+            firstHorizontal = horizontalsByEnd[firstHorizontalIndex]
+            while firstHorizontal[1] <= x:
+                horizontalYs.remove(firstHorizontal[2])
+                firstHorizontalIndex += 1
+                if firstHorizontalIndex == len(horizontalsByEnd):
+                    break
+                firstHorizontal = horizontalsByEnd[firstHorizontalIndex]
+            horizontalIndices[0] = firstHorizontalIndex
 
-                    lastLineUpToY = linesOnY[max(linesOnY.bisect_key_left(x) - 1, 0)]
+        for line in verticalLines[x]:
+            start, end = line
 
-                    if lastLineUpToY[0] < x and lastLineUpToY[1] > x:
-                        plusSignCount += 1
+            first = horizontalYs.bisect_right(start)
+            last = horizontalYs.bisect_left(end)
+
+            plusSignCount += last - first
 
     return plusSignCount
 
@@ -138,4 +139,3 @@ def getOverlappingLines(low: int, high: int, lines: SortedKeyList):
         firstOverlappingIndex += 1
 
     return set(lines.islice(firstOverlappingIndex, lastOverlappingIndex))
-
