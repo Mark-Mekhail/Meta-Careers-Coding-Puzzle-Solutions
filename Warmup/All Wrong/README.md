@@ -14,4 +14,4 @@ $C _i \in \{‘‘A",‘‘B"\}$
 
 ## Approach
 
-Start with an empty string. Iterate through each character $c_i$ of $C$ and append an "A" to the string if $c_i=$ "B" and vice-versa.
+Start with an empty string. Iterate through each character $c_i$ of $C$ and append an "A" to the string if $c_i=\text{"B"}$ and vice-versa.
