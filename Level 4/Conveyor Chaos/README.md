@@ -28,4 +28,10 @@ $0 \leq A_i < B_i \leq 1{\small,}000{\small,}000$
 
 ## Approach
 
-TODO
+A high-level overview of my approach is as follows:
+1. Create a list of conveyor objects, sorted in non-increasing order of height
+2. Track which conveyor (if any) is the left/right child of a given conveyor, where the left/right child is the conveyor that a package dropped from the left/right of a given conveyor would land on next.
+3. Track the expected horizontal movement that a package dropped on any given conveyor should experience after reaching the conveyor, assuming direction to be random.
+4. Track the likelihood that a package will land on a given conveyor, assuming all other conveyors have a random direction, as well as the expected horizontal travel distance of a package that lands on the conveyor given that the conveyor is known to move either left or right.
+5. Determine the expected horizontal travel distance of a package assuming all conveyors run at a random direction.
+6. For each conveyor and direction, determine the reduction in expected movement that setting the conveyor to run in a specific direction will result in. Store the greatest of these reductions and subtract this from the formerly determined expected travel distance.
