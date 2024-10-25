@@ -18,4 +18,8 @@ $D_i \in$ {U, D, L, R}
 
 ## Approach
 
-TODO
+At a high level, my approach involves the following steps: 
+1. Track and store all strokes, combining any strokes aligned on the same axis that overlap
+2. Sort horizontal strokes by the x-coordinate of the leftmost point of the stroke
+3. Mao each x-coordinate containing a vertical stroke to a list of vertical strokes at that x position
+4. Go through all vertical strokes and count the number of distinct horizontal strokes that pass through each stroke, adding this count to a total sum of crosses.
