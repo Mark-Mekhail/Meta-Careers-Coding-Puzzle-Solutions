@@ -18,8 +18,14 @@ $D_i \in$ {U, D, L, R}
 
 ## Approach
 
-At a high level, my approach involves the following steps: 
+### High-Level Solution Steps
+
 1. Track and store all strokes, combining any strokes aligned on the same axis that overlap
 2. Sort horizontal strokes by the x-coordinate of the leftmost point of the stroke
-3. Mao each x-coordinate containing a vertical stroke to a list of vertical strokes at that x position
+3. Map each x-coordinate containing a vertical stroke to a list of vertical strokes at that x position
 4. Go through all vertical strokes and count the number of distinct horizontal strokes that pass through each stroke, adding this count to a total sum of crosses.
+
+### Key Insights and Optimizations
+
+- We can simplify the problem and avoid double-counting by "combining" overlapping strokes aligned along the same direction and same fixed coordinate. For example, if one stroke goes up from (0,0) to (0, 5) and another stroke goes down from (0, 1) to (0, -4), we can "combine" the strokes into one strokes that spans (0,5) to (0,-4)
+- If we have two lists of merged horizontal strokes, one sorted by leftmost endpoint and another sorted by rightmost endpoint, we can determine the horizontal strokes that pass through a given x-coordinate by finding the intersection of the elements that start before the x-coordinate and end after the x-coordinate. If we search for this intersection continuously over strictly increasing x-coordinates, at most a single linear pass over both lists is required.
