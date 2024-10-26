@@ -31,4 +31,4 @@ $1 \leq S_i \leq N$
 
 ### Key Insights and Optimizations
 
-- Between each available seat $i$ and the following occupied seat (or last seat) $j$, floor($(j-i) \over (K+1)$) people can be seated without violating social distancing rules. 
+- Between each available seat $i$ and the following occupied seat (or last seat) $j$, $(j-i) \over (K+1)$ people can be seated without violating social distancing rules. 
