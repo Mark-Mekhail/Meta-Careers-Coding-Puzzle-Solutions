@@ -4,7 +4,6 @@ class Solution {
   
   public long getMaxAdditionalDinersCount(long N, long K, int M, long[] S) {
     Arrays.sort(S);
-    System.out.println(Arrays.toString(S));
     
     long curStart = 1;
     long additionalDinersCount = 0;
