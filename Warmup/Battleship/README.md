@@ -16,4 +16,11 @@ $0 \leq G_{i,j} \leq 1$
 
 ## Approach
 
-Count the number of cells containing ships ($G_{i,j}=1$) and divide this by the total number of cells in the grid ($R*C$) to get the probability that a ship will be hit by a random shot.
+### High-Level Solution Steps
+
+1. Count the number of cells containing ships ($G_{i,j}=1$) 
+2. Divide the number of cells containing ships by the total number of cells.
+
+### Key Insights and Optimizations
+
+- The probability that a ship will be hit by a random shot is simply equal to the number of cells containing a ship divided by the total number of cells in the grid.

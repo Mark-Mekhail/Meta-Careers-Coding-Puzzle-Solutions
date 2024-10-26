@@ -12,4 +12,10 @@ $1 \leq A,B,C \leq 100$
 
 ## Approach
 
-The approach is trivial. All we need to do is sum up the three numbers!
+### High-Level Solution Steps
+
+1. Sum up all three numbers.
+
+### Key Insights and Optimizations
+
+N/A (the problem is trivial)
