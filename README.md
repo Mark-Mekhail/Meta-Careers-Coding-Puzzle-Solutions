@@ -18,7 +18,7 @@ The solutions included in this repo pass all testcases provided by Meta, includi
 | Puzzle Name               | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
 | :-----------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
 | Cafeteria                 | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
-| Director of Photography 1 |                     | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
+| Director of Photography 1 | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
 | Kaitenzushi               |                     | :heavy_check_mark:  |                     |                     |                     |
 | Rotary Lock 1             |                     | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
 | Scoreboard Inference 1    |                     | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
