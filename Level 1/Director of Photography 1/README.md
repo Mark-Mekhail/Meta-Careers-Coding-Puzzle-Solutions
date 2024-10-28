@@ -2,7 +2,7 @@
 
 ## Problem Description
 
-Note: [Chapter 2](../../Level%202/Director%20of%20Photography%202/) is a harder version of this puzzle. The only difference is a larger constraint on $N$.
+*Note: [Chapter 2](../../Level%202/Director%20of%20Photography%202/) is a harder version of this puzzle. The only difference is a larger constraint on $N$.*
 
 A photography set consists of $N$ cells in a row, numbered from $1$ to $N$ in order, and can be represented by a string $C$ of length $N$. Each cell $i$ is one of the following types (indicated by $C_i$, the $i\text{th}$ character of $C$):
 - If $C_i = \text{"P"}$, it is allowed to contain a photographer
