@@ -19,7 +19,7 @@ Determine the minimum number of seconds required to reach any exit, if it's poss
 
 $1 \leq R,C \leq 50$
 
-$G_{i,j} \in \{".", "S", "E", "\#", "a"..."z"\}$
+$G_{i,j} \in \{\text{".", "S", "E", "\#", "a"..."z"\}}$
 
 ## Approach
 

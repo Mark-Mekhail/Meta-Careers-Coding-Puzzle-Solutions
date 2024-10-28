@@ -14,7 +14,7 @@ $2 \leq N \leq 2{\small,}000{\small,}000$
 
 $1 \leq L_i \leq 1{\small,}000{\small,}000{\small,}000$
 
-$D_i \in$ {U, D, L, R}
+$D_i \in \{\text{U, D, L, R}\}$
 
 ## Approach
 

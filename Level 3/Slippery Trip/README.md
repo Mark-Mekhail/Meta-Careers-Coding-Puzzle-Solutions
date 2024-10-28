@@ -22,7 +22,7 @@ $2 \leq R,C \leq 400{\small,}000$
 
 $R*C \leq 800{\small,}000$
 
-$G_{i,j} \in$ {"$.$", "$*$", ">", "v"}
+$G_{i,j} \in \{\text{".", "*", ">", "v"}\}$
 
 ## Approach
 
