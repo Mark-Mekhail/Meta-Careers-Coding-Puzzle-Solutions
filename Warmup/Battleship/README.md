@@ -16,10 +16,9 @@ $0 \leq G_{i,j} \leq 1$
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
-1. Count the number of cells containing ships ($G_{i,j}=1$) 
-2. Divide the number of cells containing ships by the total number of cells.
+Count the number of cells containing ships ($G_{i,j}=1$) and divide the number of cells containing ships by the total number of cells.
 
 ### Key Insights and Optimizations
 

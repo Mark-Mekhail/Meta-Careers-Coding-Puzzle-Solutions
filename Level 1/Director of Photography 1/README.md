@@ -22,9 +22,9 @@ $1 \leq X \leq Y \leq N$
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
-1. Go through each cell in the set and count the number of distinct artistic photographs that can be taken with the current cell as the lowest-indexed cell used for the photograph. Add this count to a running sum.
+Go through each cell in the set and count the number of distinct artistic photographs that can be taken with the current cell as the lowest-indexed cell used for the photograph. Add this count to a running sum.
 
 ### Key Insights and Optimizations
 

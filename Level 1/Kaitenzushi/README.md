@@ -20,9 +20,9 @@ $1 \leq D_i \leq 1{\small,}000{\small,}000$
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
-1. Go through the dishes on the belt in order. If the current dish being processed is detected to have been one of the last $K$ dishes eaten, do nothing; otherwise, add one to a running count of dishes eaten.
+Go through the dishes on the belt in order. If the current dish being processed is detected to have been one of the last $K$ dishes eaten, do nothing; otherwise, add one to a running count of dishes eaten.
 
 ### Key Insights and Optimizations
 

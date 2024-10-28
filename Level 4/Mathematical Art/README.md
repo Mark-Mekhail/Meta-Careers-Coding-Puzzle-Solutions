@@ -18,7 +18,7 @@ $D_i \in$ {U, D, L, R}
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
 1. Track and store all strokes, combining any strokes aligned on the same axis that overlap
 2. Sort horizontal strokes by the x-coordinate of the leftmost point of the stroke

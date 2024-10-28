@@ -24,10 +24,11 @@ $1 \leq S_i \leq N$
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
-1. Go through each occupied seat in increasing order of seat number and calculate the maximum number of people that can occupy seats between the current occupied seat and the previously calculated next available location. Add this value to a cumulative sum.
-2. Add the number of people that can be seated between the last occupied seat and the last available seat to the aforementioned sum.
+Go through each occupied seat in increasing order of seat number and calculate the maximum number of people that can occupy seats between the current occupied seat and the previously calculated next available location. Add this value to a cumulative sum.
+
+At the end, add the number of people that can be seated between the last occupied seat and the last available seat to the aforementioned sum.
 
 ### Key Insights and Optimizations
 

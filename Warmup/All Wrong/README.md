@@ -14,10 +14,9 @@ $C _i \in \{‘‘A",‘‘B"\}$
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
-1. Start with an empty answers string.
-2. Iterate through each character $c_i$ of $C$ and append an "A" to the answers string if $c_i=\text{"B"}$ and vice-versa.
+1. Start with an empty answers string then iterate through each character $c_i$ of $C$, appending an "A" to the answers string if $c_i=\text{"B"}$ and vice-versa.
 
 ### Key Insights and Optimizations
 

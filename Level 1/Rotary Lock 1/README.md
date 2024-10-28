@@ -26,9 +26,9 @@ $1 \leq C_i \leq N$
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
-1. Go through the sequence of integers in the code in order. For each integer, determine the minimum amount of time needed to rotate the wheel from its previous position to the position of the current integer. Add this value to a running total.
+Go through the sequence of integers in the code in order. For each integer, determine the minimum amount of time needed to rotate the wheel from its previous position to the position of the current integer. Add this value to a running total.
 
 ### Key Insights and Optimizations
 

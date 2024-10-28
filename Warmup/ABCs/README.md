@@ -12,9 +12,9 @@ $1 \leq A,B,C \leq 100$
 
 ## Approach
 
-### High-Level Solution Steps
+### High-Level Solution
 
-1. Sum up all three numbers.
+Simply sum up all three numbers.
 
 ### Key Insights and Optimizations
 
