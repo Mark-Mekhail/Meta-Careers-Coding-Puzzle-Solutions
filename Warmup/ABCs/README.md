@@ -14,7 +14,7 @@ $1 \leq A,B,C \leq 100$
 
 ### High-Level Solution
 
-1. Simply return $A$ + $B$ + $C$
+1. Simply return $A$ + $B$ + $C$.
 
 ### Key Insights and Optimizations
 
