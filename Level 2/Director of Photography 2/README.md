@@ -22,4 +22,15 @@ $1 \leq X \leq Y \leq N$
 
 ## Approach
 
-TODO
+### High-Level Solution
+
+1. Start by populating two lists $P\text{s}$ and $B\text{s}$ which store at each index $i$ the total number of occurences of the letter "P" and "B", respectively, in the first $i$ letters of $C$.
+
+2. Using $P\text{s}$ and $B\text{s}$, populate two new lists $AP\text{s}$ and $AB\text{s}$ that store, at each index $i$, the total number of distinct pairs of actors followed by a photographer and backdrop, respectively, within $X$ and $Y$ cells (from the definition of *artistic*) of the actor where the actor is in a cell $j \leq i$. 
+
+3. Finally, for each cell in $C$, count the number of distinct artistic configurations possible such that the current cell holds the photographer/actor with the lowest index in the configuration. Add this count to a running total.
+
+### Key Insights and Optimizations
+
+- Using $P\text{s}$, we can easily populate $AP\text{s}$ by observing that the number of distinct *artistic* configurations of actors followed by photographers with the actor at cell $i$, which we can call $AP_i$, is simply the number of photographers in cells $(i + X)$...$(i + Y)$ (which can easily be calculated using $P\text{s}$ ) if cell $i$ contains an actor and $0$ otherwise. The cumulative number of such configurations up to cell $i$ is therefore $AP\text{s}[i-1]$ + $AP_i$. The same logic follows for $AB\text{s}$.
+- Step 3 of the high-level solution is easy to complete using $AP\text{s}$ and $AB\text{s}$. All you need to do is check what the cell contains and use the relevant list (if any) to compute the number of *artistic* configurations of actors and photographers/backdrops follow the current cell.
