@@ -28,7 +28,7 @@ The solutions included in this repo pass all testcases provided by Meta, includi
 ### Level 2
 | Puzzle Name               | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
 | :-----------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
-| Director of Photography 2 |                     | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |
+| Director of Photography 2 | :heavy_check_mark:  | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |
 | Hops                      |                     | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
 | Missing Mail              |                     | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
 | Portals                   |                     | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     | 
