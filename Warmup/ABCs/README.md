@@ -14,7 +14,7 @@ $1 \leq A,B,C \leq 100$
 
 ### High-Level Solution
 
-Simply sum up all three numbers.
+1. Simply return $A$ + $B$ + $C$
 
 ### Key Insights and Optimizations
 

@@ -16,7 +16,9 @@ $C _i \in \{\text{"A","B"}\}$
 
 ### High-Level Solution
 
-1. Start with an empty answers string then iterate through each character $c_i$ of $C$, appending an "A" to the answers string if $c_i=\text{"B"}$ and vice-versa.
+1. Create an empty string called ```answers```
+2. Iterate through each character $c_i$ of $C$ in order. For each character $c_i$, append an "A" to ```answers``` if $c_i=\text{"B"}$ and vice-versa.
+3. Return ```answers```
 
 ### Key Insights and Optimizations
 
