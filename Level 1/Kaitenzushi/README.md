@@ -22,7 +22,11 @@ $1 \leq D_i \leq 1{\small,}000{\small,}000$
 
 ### High-Level Solution
 
-Go through the dishes on the belt in order. If the current dish being processed is detected to have been one of the last $K$ dishes eaten, do nothing; otherwise, add one to a running count of dishes eaten.
+1. Create a queue ```dish_queue``` and a set ```dish_set```. These will help track the $K$ most recently consumed dishes.
+2. Add $K$ "garbage" dishes to ```dish_queue```.
+3. Initialize a variable ```dish_count``` to $0$.
+4. Go through the dishes in $D$ in order. For each dish $D_i$, if $D_i$ is not already in the dish set (i.e. it is not one of the previous $K$ dishes seen), increment ```dish_count```, add $D_i$ to ```dish_set``` and remove the dish at the top of ```dish_queue``` from ```dish_set```. 
+5. Return ```dish_count```.
 
 ### Key Insights and Optimizations
 
