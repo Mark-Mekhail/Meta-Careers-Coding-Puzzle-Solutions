@@ -22,8 +22,10 @@ $1 \leq R_i \leq 1{\small,}000{\small,}000{\small,}000$
 
 ### High-Level Solution
 
-Go through discs on the stack from bottom to top. If any disc has a radius larger than or equal to the one above it, update the radius such that $R_i=R_{i+1}-1$ and add 1 to a running count of deflated discs.
+1. Initialize a variable ```deflation_count``` to $0$.
+2. Go through each disc radius $R_i$ in $R$ in reverse order (i.e. from bottom to top). If $R_i$ is not smaller than $R_{i+1}$, set $R_i = R_{i+1} - 1$ and increment ```deflation_count```.
+3. Return ```deflation_count```.
 
 ### Key Insights and Optimizations
 
-- Assuming the stack is stable below a disc $i$, the disc will need to be deflated if and only if the disc below it is larger or equal in size to it. 
+- Assuming the stack is stable below a disc $i$, disc $i$ will need to be deflated if and only if the disc below it is larger or equal in size to it. 
