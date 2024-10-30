@@ -28,6 +28,10 @@ $1 \leq C_i \leq N$
 
 ### High-Level Solution
 
+#### getMinCodeEntryTime(N, M, C)
+
+Top level function for the problem.
+
 1. Initialize a variable ```entry_time``` to $0$.
 2. Go through the sequence of integers in the code in order. For each integer $C_i$, determine the minimum amount of time needed to rotate the wheel from its previous position to the position of the current integer. Add this value ```entry_time```.
 3. Return ```entry_time```.

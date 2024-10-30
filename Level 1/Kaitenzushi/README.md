@@ -22,6 +22,10 @@ $1 \leq D_i \leq 1{\small,}000{\small,}000$
 
 ### High-Level Solution
 
+#### getMaximumEatenDishCount(N, D, K)
+
+Top level function for the problem.
+
 1. Create a queue ```dish_queue``` and a set ```dish_set```. These will help track the $K$ most recently consumed dishes.
 2. Add $K$ "garbage" dishes to ```dish_queue```.
 3. Initialize a variable ```dish_count``` to $0$.

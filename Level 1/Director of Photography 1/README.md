@@ -24,6 +24,10 @@ $1 \leq X \leq Y \leq N$
 
 ### High-Level Solution
 
+#### getArtisticPhotographCount(N, C, X, Y)
+
+Top level function for the problem.
+
 1. Initialize a variable ```artistic_photo_count``` to $0$.
 2. Go through the cells in $C$. For each cell $C_i$, count the number of distinct *artistic photographs* that can be taken where cell $C_i$ is part of the photograph and all other cells $C_j$ in the photograph come after $C_i$ (i.e. $j > i$). Add this number to ```artistic_photo_count```.
     1. The number of *artistic photographs* including cell $C_i$ and only cells after it can easily be computed by a brute force search. If $C_i$ contains a photographer or backdrop, one can look at cells $C_j$ where $i+X \leq j \leq i+Y$ and then for each cell $C_j$ that contains an actor count the number of cells $C_k$ where $j + X \leq K \leq j + Y$ such that $\{C_i, C_j, C_K\}$ make up an *artistic photograph*.

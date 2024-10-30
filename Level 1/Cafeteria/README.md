@@ -26,6 +26,10 @@ $1 \leq S_i \leq N$
 
 ### High-Level Solution
 
+#### getMaxAdditionalDinersCount(N, K, M, S)
+
+Top level function for the problem.
+
 1. Initialize ```additional_diners``` to $0$.
 2. Sort $S$ in increasing order.
 3. Go through each occupied seat in $S$ in increasing order of seat number. For each occupied seat $S_i$, calculate the maximum number of people that can occupy seats between the previously calculated next occupiable seat position ($0$ at the start and the number of the most recently processed occupied seat plus $K + 1$ afterwards) and $S_i$. Add this value to ```additional_diners```.

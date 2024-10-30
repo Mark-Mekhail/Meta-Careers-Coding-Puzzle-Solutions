@@ -20,6 +20,10 @@ $1 \leq S_i \leq 1{\small,}000{\small,}000{\small,}000$
 
 ### High-Level Solution
 
+#### getMinProblemCount(N, S)
+
+Top level function for the problem.
+
 1. Initialize the variables ```max_score``` to $-1$ and ```contains_odd``` to ```false```.
 2. For each score $S_i$ in $S$, set ```max_score``` to the greater of its current value and $S_i$. Also set ```contains_odd``` to ```true``` if $S_i$ is odd.
 3. Set ```min_problem_count``` to ```max_score / 2``` (integer division).

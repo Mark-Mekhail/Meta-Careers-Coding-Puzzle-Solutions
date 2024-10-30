@@ -14,6 +14,10 @@ $1 \leq A,B,C \leq 100$
 
 ### High-Level Solution
 
+#### getSum(A, B, C)
+
+Top level function for the problem.
+
 1. Simply return $A$ + $B$ + $C$.
 
 ### Key Insights and Optimizations
