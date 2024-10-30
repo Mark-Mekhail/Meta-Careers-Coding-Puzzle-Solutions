@@ -6,7 +6,7 @@ You've found yourself in a grid of cells with $R$ rows and $C$ columns. The cell
 - If $G_{i,j} = "."$, the cell is empty.
 - If $G_{i,j} = "S"$, the cell contains your starting position. There is exactly one such cell.
 - If $G_{i,j} = "E"$, the cell contains an exit. There is at least one such cell.
-- If $G_{i,j} = "$#$"$, the cell contains a wall.
+- If $G_{i,j} = "$# $"$, the cell contains a wall.
 - Otherwise, if $G_{i,j}$ is a lowercase letter (between "a" and "z", inclusive), the cell contains a portal marked with that letter.
 
 Your objective is to reach any exit from your starting position as quickly as possible. Each second, you may take either of the following actions:
