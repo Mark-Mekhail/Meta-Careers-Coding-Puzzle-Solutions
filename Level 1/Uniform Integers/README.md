@@ -16,8 +16,23 @@ $1 \leq A \leq B \leq 10^{12}$
 
 ### High-Level Solution
 
-Starting with $A$, find the smallest uniform integer $C$ such that $C \geq A$. If $C \leq B$, add one to a running count, set $A=C+1$, and repeat until $C > B$. 
+#### getUniformIntegerCountInInterval(A, B)
+
+Top level function for the problem.
+
+1. Initialize the variables ```uniform_int_count``` to $0$ and ```next_uniform_int``` to ```getNextUniformInt(A)```.
+2. While ```next_uniform_int``` $\leq B$, increment ```uniform_int_count``` and set ```next_uniform_int``` to ```getNextUniformInt(next_uniform_int + 1)```.
+3. Return ```uniform_int_count```.
+
+#### getNextUniformInt(floor)
+
+Given an integer ```floor```, returns the smallest uniform integer greater than or equal to floor.
+
+1. Determine the value of the first digit of ```floor```. Store this value in the variable ```first_digit```.
+2. Construct an integer ```next_uniform``` that has same number of digits as ```floor``` but where all digits have the value of ```first_digit```.
+3. If ```next_uniform < floor```, increment all digits in ```next_uniform```.
+4. Return ```next_uniform```.
 
 ### Key Insights and Optimizations
 
-- To get the smallest uniform integer $C$ such that $C \geq A$, we can simply take the first digit $a$ of $A$ and form a number that has as many digits as $A$ where all digits have the value $a$. If this number is less than $A$, we can simply do the same but with $a=a+1$ and this is guaranteed to be greater than $A$.
+- For any integer $I$ with $d$ digits and leading digit $i$, the smallest uniform integer $j \geq I$ will be either $d$ repetitions of $i$ or $d$ repetitions of $(i+1)$.
