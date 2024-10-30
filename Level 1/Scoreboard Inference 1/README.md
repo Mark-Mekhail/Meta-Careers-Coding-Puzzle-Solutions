@@ -20,8 +20,11 @@ $1 \leq S_i \leq 1{\small,}000{\small,}000{\small,}000$
 
 ### High-Level Solution
 
-Determine the maximum score and track whether or not any scores are odd. The minimum possible number of problems will be the maximum score divided by 2 (through integer division). If there are any odd scores, we need to add one to this value.
+1. Initialize the variables ```max_score``` to $-1$ and ```contains_odd``` to ```false```.
+2. For each score $S_i$ in $S$, set ```max_score``` to the greater of its current value and $S_i$. Also set ```contains_odd``` to ```true``` if $S_i$ is odd.
+3. Set ```min_problem_count``` to ```max_score / 2``` (integer division).
+4. Increment ```min_problem_count``` by 1 if ```contains_odd``` is ```true```.
 
 ### Key Insights and Optimizations
 
-- The smallest possible set of problems must contain enough points to allow the maximum score to be possible. This can be attained by allocating as many 2-point problems as needed to reach at least the maximum score - 1. If there are any odd scores, we also need a 1-point problem which combined with any number of two-point problems can create any odd score needed.
+- The smallest possible set of problems must contain enough points to allow the maximum score to be possible. This can be attained by allocating as many 2-point problems as needed to reach at least the maximum score - 1. If there are any odd scores, we also need a 1-point problem which combined with any number of two-point problems can create any odd score needed up to the maximum score.
