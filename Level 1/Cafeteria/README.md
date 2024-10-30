@@ -26,10 +26,12 @@ $1 \leq S_i \leq N$
 
 ### High-Level Solution
 
-Go through each occupied seat in increasing order of seat number and calculate the maximum number of people that can occupy seats between the current occupied seat and the previously calculated next available location. Add this value to a cumulative sum.
-
-At the end, add the number of people that can be seated between the last occupied seat and the last available seat to the aforementioned sum.
+1. Initialize ```additional_diners``` to $0$.
+2. Sort $S$ in increasing order.
+3. Go through each occupied seat in $S$ in increasing order of seat number. For each occupied seat $S_i$, calculate the maximum number of people that can occupy seats between the previously calculated next occupiable seat position ($0$ at the start and the number of the most recently processed occupied seat plus $K + 1$ afterwards) and $S_i$. Add this value to ```additional_diners```.
+4. Calculate the number of people that can be seated between the occupied seat with the greatest seat number in $S$ and $N$. Add this value to ```additional_diners```.
+5. Return ```additional_diners```.
 
 ### Key Insights and Optimizations
 
-- Between each available seat $i$ and the following occupied seat (or last seat) $j$, $(j-i) \over (K+1)$ people can be seated without violating social distancing rules. 
+- Between the previously calculated next occupiable seat position $i$ and the following occupied seat (or last seat) $j$, $(j-i) \over (K+1)$ people can be seated without violating social distancing rules. 
