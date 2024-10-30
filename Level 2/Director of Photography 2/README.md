@@ -24,10 +24,12 @@ $1 \leq X \leq Y \leq N$
 
 ### High-Level Solution
 
+#### getArtisticPhotographCount(N, C, X, Y)
+
+Top level function for the problem.
+
 1. Start by populating two lists $P\text{s}$ and $B\text{s}$ which store at each index $i$ the total number of occurences of the letter "P" and "B", respectively, in the first $i$ letters of $C$.
-
 2. Using $P\text{s}$ and $B\text{s}$, populate two new lists $AP\text{s}$ and $AB\text{s}$ that store, at each index $i$, the total number of distinct pairs of actors followed by a photographer and backdrop, respectively, within $X$ and $Y$ cells (from the definition of *artistic*) of the actor where the actor is in a cell $j \leq i$. 
-
 3. Finally, for each cell in $C$, count the number of distinct artistic configurations possible such that the current cell holds the photographer/actor with the lowest index in the configuration. Add this count to a running total.
 
 ### Key Insights and Optimizations
