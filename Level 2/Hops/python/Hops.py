@@ -9,12 +9,10 @@ def getSecondsRequired(N: int, F: int, P: List[int]) -> int:
     
     i = 1
     while i < F:
-        next_frog_index = P[i]
-        seconds += next_frog_index - first_frog_index
-        first_frog_index = next_frog_index
+        seconds += P[i] - first_frog_index
+        first_frog_index = P[i]
         
         while i + 1 < F and P[i + 1] < first_frog_index + i:
-            next_frog_index = P[i + 1]
             i += 1
         
         i += 1

@@ -10,12 +10,9 @@ function getSecondsRequired(N, F, P) {
     var firstFrogIndex = P[0]
     var seconds = 0
     for (let i = 1; i < F; i++) {
-      nextFrogIndex = P[i]
-      seconds += nextFrogIndex - firstFrogIndex
-      firstFrogIndex = nextFrogIndex
-      while (i + 1 < F && P[i+1] < firstFrogIndex + i) {
-        nextFrogIndex = P[++i]
-      }
+      seconds += P[i] - firstFrogIndex
+      firstFrogIndex = P[i]
+      for (;i + 1 < F && P[i+1] < firstFrogIndex + i; i++);
     }
     
     seconds += N - firstFrogIndex
