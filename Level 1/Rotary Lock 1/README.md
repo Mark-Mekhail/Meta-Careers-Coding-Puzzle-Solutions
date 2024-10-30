@@ -28,8 +28,10 @@ $1 \leq C_i \leq N$
 
 ### High-Level Solution
 
-Go through the sequence of integers in the code in order. For each integer, determine the minimum amount of time needed to rotate the wheel from its previous position to the position of the current integer. Add this value to a running total.
+1. Initialize a variable ```entry_time``` to $0$.
+2. Go through the sequence of integers in the code in order. For each integer $C_i$, determine the minimum amount of time needed to rotate the wheel from its previous position to the position of the current integer. Add this value ```entry_time```.
+3. Return ```entry_time```.
 
 ### Key Insights and Optimizations
 
-- We can calculate the minimum time needed to rotate the wheel from one position to another by taking the minimum of the time needed to do so by rotating to the right and to the left.
+- We can calculate the minimum time needed to rotate the wheel from one position to another by taking the minimum of the time needed to do so by rotating in either direction.
