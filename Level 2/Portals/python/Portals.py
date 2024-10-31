@@ -1,7 +1,7 @@
 from typing import List
 
 def getSecondsRequired(R: int, C: int, G: List[List[str]]) -> int:
-    start = (0,0);
+    start = (0,0)
     portals = {}
     for row in range(R):
         for col in range(C):
