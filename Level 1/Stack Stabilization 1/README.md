@@ -24,12 +24,10 @@ $1 \leq R_i \leq 1{\small,}000{\small,}000{\small,}000$
 
 #### getMinimumDeflatedDiscCount(N, R)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Initialize a variable ```deflation_count``` to $0$.
-2. Go through each disc radius $R_i$ in $R$ in reverse order (i.e. from bottom to top). If $R_i$ is not smaller than $R_{i+1}$, set $R_i = R_{i+1} - 1$ and increment ```deflation_count```.
-3. Return ```deflation_count```.
+Go through the discs from bottom to top. If any disc is found to not be smaller than the disc below it, deflate the disc and update its radius such that $R_i = R_{i+1} - 1$. Return the number of discs deflated in this process.
 
 ### Key Insights and Optimizations
 
-- Assuming the stack is stable below a disc $i$, disc $i$ will need to be deflated if and only if the disc below it is larger or equal in size to it. 
+- Assuming the stack is stable below a disc $i$, disc $i$ will need to be deflated if and only if the disc below it is larger or equal in size to it. We should only deflate discs to be smaller than the disc below it by $1$ so that we avoid unnecessary deflations later on.

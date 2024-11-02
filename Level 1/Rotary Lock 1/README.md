@@ -30,11 +30,15 @@ $1 \leq C_i \leq N$
 
 #### getMinCodeEntryTime(N, M, C)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Initialize a variable ```entry_time``` to $0$.
-2. Go through the sequence of integers in the code in order. For each integer $C_i$, determine the minimum amount of time needed to rotate the wheel from its previous position to the position of the current integer. Add this value ```entry_time```.
-3. Return ```entry_time```.
+Go through all digits in the code, in order. At each iteration $i$, calculate the amount of time needed to rotate the lock from its previous position to $i$.
+
+#### getRotationTime(N, startDigit, endDigit)
+
+*Returns the minimum time needed to rotate a lock with $N$ digits from ```startDigit``` to ```endDigit```.*
+
+Implementation is straightforward.
 
 ### Key Insights and Optimizations
 

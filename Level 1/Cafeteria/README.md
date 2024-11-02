@@ -28,18 +28,16 @@ $1 \leq S_i \leq N$
 
 #### getMaxAdditionalDinersCount(N, K, M, S)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Initialize ```additional_diners``` to $0$.
-2. Sort $S$ in increasing order.
-3. Go through each occupied seat in $S$ in increasing order of seat number. For each occupied seat $S_i$, calculate the maximum number of people that can occupy seats between the previously calculated next occupiable seat position ($0$ at the start and the number of the most recently processed occupied seat plus $K + 1$ afterwards) and $S_i$. Add this value to ```additional_diners```.
-4. Calculate the number of people that can be seated between the occupied seat with the greatest seat number in $S$ and $N$. Add this value to ```additional_diners```.
-5. Return ```additional_diners```.
+Go through all occupied seats in $S$ in order from smallest to greatest position and calculate the maximum amount of diners that can be seated before the first occupied seat, between each adjacent pair of occupied seats, and after the last occupied seat.
 
 #### getMaxDinersBetweenSeats(startPos, endPos, K)
 
-Given a starting seat position ```startPos``` and an ending seat position ```endPos```, returns the maximum number of socially-distanced seats in the interval [```startPos```, ```endPos```] that can be occupied assuming that the seats at ```startPos``` and ```endPos``` are socially distanced from occupied seats before and after them.
+*Given a starting seat position ```startPos``` and an ending seat position ```endPos```, returns the maximum number of socially-distanced seats in the interval [```startPos```, ```endPos```] that can be occupied assuming that the seats at ```startPos``` and ```endPos``` are socially distanced from occupied seats before and after them.*
+
+Implementation is straightforward.
 
 ### Key Insights and Optimizations
 
-- Between the previously calculated next occupiable seat position $i$ and the following occupied seat (or last seat) $j$, $(j-i) \over (K+1)$ people can be seated without violating social distancing rules. 
+- We can seat **ceil**($(j-i) \over (K+1)$) people in a way that satisfies social distancing protocols in a sequence of available seats in the interval [$i$, $j$], assuming the endpoints of the interval are socially-distanced from the seats around them. 

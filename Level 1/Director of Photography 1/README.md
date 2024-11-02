@@ -26,12 +26,21 @@ $1 \leq X \leq Y \leq N$
 
 #### getArtisticPhotographCount(N, C, X, Y)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Initialize a variable ```artistic_photo_count``` to $0$.
-2. Go through the cells in $C$. For each cell $C_i$, count the number of distinct *artistic photographs* that can be taken where cell $C_i$ is part of the photograph and all other cells $C_j$ in the photograph come after $C_i$ (i.e. $j > i$). Add this number to ```artistic_photo_count```.
-    1. The number of *artistic photographs* including cell $C_i$ and only cells after it can easily be computed by a brute force search. If $C_i$ contains a photographer or backdrop, one can look at cells $C_j$ where $i+X \leq j \leq i+Y$ and then for each cell $C_j$ that contains an actor count the number of cells $C_k$ where $j + X \leq K \leq j + Y$ such that $\{C_i, C_j, C_K\}$ make up an *artistic photograph*.
-3. Return ```artistic_photo_count```.
+Go through all positions $i$ from $0$ to the last possible start position for an artistic photograph and count the number of artistic photos that can be created where the first character in the photograph configuration is at $i$.
+
+#### getArtisticPhotographsFromStartPos(N, C, X, Y, i)
+
+*Given a starting cell $i$, counts the number of distinct *artistic photographs* that can be taken where cell $C_i$ is part of the photograph and all other cells $C_j$ in the photograph come after $C_i$ (i.e. $j > i$).*
+
+Check the character at the starting cell. If the cell contains a photographer or backdrop, look for actors in the interval [$i+X$, $i+Y]. For every cell $j$ in this interval that contains an actor, count the number of occurences of the last character needed for an artistic photograph in the cells in the interval [$j+X$, $j+Y]. Return the total count of these last occurences.
+
+#### countCharacterOccurenceInInterval(N, C, char, start, end)
+
+*Counts the number of occurences of a given character ```char``` in $C$ in the interval [```start```, ```end```).*
+
+Implementation is straightforward.
 
 ### Key Insights and Optimizations
 

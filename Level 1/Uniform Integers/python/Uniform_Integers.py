@@ -1,32 +1,30 @@
-import math
-
 def getUniformIntegerCountInInterval(A: int, B: int) -> int:
-  count = 0
-  nextUniform = getNextUniform(A)
-  
-  while (nextUniform <= B):
-    print(nextUniform)
-    nextUniform = getNextUniform(nextUniform + 1)
-    count += 1
+    uniformIntegerCount = 0
+    nextUniformInteger = getNextUniformInteger(A)
     
-  return count
+    while (nextUniformInteger <= B):
+        uniformIntegerCount += 1
+        nextUniformInteger = getNextUniformInteger(nextUniformInteger + 1)
+      
+    return uniformIntegerCount
   
-
-def getNextUniform(val: int):
-  numDigits = len(str(val))
-  firstDigit = val // (10 ** (numDigits - 1))
-  
-  jumpToNext = 1
-  nextUniform = firstDigit
-  
-  for _ in range(numDigits - 1):
-    nextUniform *= 10
-    jumpToNext *= 10
+# Get the smallest uniform integer greater than or equal a given value
+def getNextUniformInteger(floor: int):
+    numDigits = len(str(floor))
+    firstDigit = floor // (10 ** (numDigits - 1))
     
-    nextUniform += firstDigit
-    jumpToNext += 1
+    uniformOnes = 1  # An integer of all 1's with numDigits digits
+    nextUniformInteger = firstDigit
     
-  if nextUniform < val:
-    nextUniform += jumpToNext
-    
-  return nextUniform
+    for _ in range(numDigits - 1):
+        nextUniformInteger *= 10
+        uniformOnes *= 10
+        
+        nextUniformInteger += firstDigit
+        uniformOnes += 1
+      
+    if nextUniformInteger < floor:
+        # If val is greater than its first digit repeated numDigits times, increment all digits by 1
+        nextUniformInteger += uniformOnes
+      
+    return nextUniformInteger

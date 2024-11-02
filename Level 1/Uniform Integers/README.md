@@ -18,20 +18,15 @@ $1 \leq A \leq B \leq 10^{12}$
 
 #### getUniformIntegerCountInInterval(A, B)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Initialize the variables ```uniform_int_count``` to $0$ and ```next_uniform_int``` to ```getNextUniformInt(A)```.
-2. While ```next_uniform_int``` $\leq B$, increment ```uniform_int_count``` and set ```next_uniform_int``` to ```getNextUniformInt(next_uniform_int + 1)```.
-3. Return ```uniform_int_count```.
+Find the smallest uniform integer $i$ with a value greater than or equal to $A$. If $i \leq B$, find the next uniform integer greater than $i$. Repeat this process until $i > B$ and return the number of different uniform integers $i \leq B$ that were found.
 
 #### getNextUniformInt(floor)
 
-Given an integer ```floor```, returns the smallest uniform integer greater than or equal to floor.
+*Given an integer ```floor```, returns the smallest uniform integer greater than or equal to floor.*
 
-1. Determine the value of the first digit of ```floor```. Store this value in the variable ```first_digit```.
-2. Construct an integer ```next_uniform``` that has same number of digits as ```floor``` but where all digits have the value of ```first_digit```.
-3. If ```next_uniform < floor```, increment all digits in ```next_uniform```.
-4. Return ```next_uniform```.
+Construct an integer $i$ that contains the same number of digits as ```floor```, where all digits are equal to the first digit of ```floor```. If $i < $ ```floor```, increment each digit of $i$. Return $i$.
 
 ### Key Insights and Optimizations
 

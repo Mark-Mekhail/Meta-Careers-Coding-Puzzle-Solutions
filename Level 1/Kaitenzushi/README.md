@@ -24,13 +24,11 @@ $1 \leq D_i \leq 1{\small,}000{\small,}000$
 
 #### getMaximumEatenDishCount(N, D, K)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Create a queue ```dish_queue``` and a set ```dish_set```. These will help track the $K$ most recently consumed dishes.
-2. Add $K$ "garbage" dishes to ```dish_queue```.
-3. Initialize a variable ```dish_count``` to $0$.
-4. Go through the dishes in $D$ in order. For each dish $D_i$, if $D_i$ is not already in the dish set (i.e. it is not one of the previous $K$ dishes seen), increment ```dish_count```, add $D_i$ to ```dish_set``` and remove the dish at the top of ```dish_queue``` from ```dish_set```. 
-5. Return ```dish_count```.
+Create a queue ```dish_queue``` that is initially filled with $K$ "garbage" dishes.
+
+Go through the dishes in $D$ in order. For each dish $D_i$, if $D_i$ is not already in ```dish_queue``` (i.e. it is not one of the previous $K$ dishes seen), remove the dish at the front of ```dish_queue``` and add $D_i$ to the queue. Return a count of the removals from ```dish_queue``` that took place. 
 
 ### Key Insights and Optimizations
 
