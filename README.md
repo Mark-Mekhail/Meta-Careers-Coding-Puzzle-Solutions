@@ -32,10 +32,10 @@ The solutions included in this repo pass all testcases provided by Meta, includi
 | Hops                      | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
 | Missing Mail              | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
 | Portals                   | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     | 
-| Rabbit Hole 1             |                     | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |
-| Rotary Lock 2             |                     | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
-| Scoreboard Inference 2    |                     | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
-| Tunnel Time               |                     | :heavy_check_mark:  |                     |                     |                     |
+| Rabbit Hole 1             | :heavy_check_mark:  | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |
+| Rotary Lock 2             | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
+| Scoreboard Inference 2    | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
+| Tunnel Time               | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
 
 ### Level 3
 | Puzzle Name               | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
