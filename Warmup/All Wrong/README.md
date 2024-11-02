@@ -20,9 +20,7 @@ $C _i \in \{\text{"A","B"}\}$
 
 Top level function for the problem.
 
-1. Create an empty string called ```wrong_answers```.
-2. Iterate through each character $c_i$ of $C$ in order. For each character $c_i$, append an "A" to ```wrong_answers``` if $c_i=\text{"B"}$ and vice-versa.
-3. Return ```wrong_answers```.
+Creates the wrong answer string, as defined in the puzzle description, which is a trivial problem.
 
 ### Key Insights and Optimizations
 

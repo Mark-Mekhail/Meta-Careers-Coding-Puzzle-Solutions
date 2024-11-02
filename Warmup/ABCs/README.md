@@ -18,7 +18,7 @@ $1 \leq A,B,C \leq 100$
 
 Top level function for the problem.
 
-1. Simply return $A$ + $B$ + $C$.
+Simply returns $A$ + $B$ + $C$, which is trivial.
 
 ### Key Insights and Optimizations
 

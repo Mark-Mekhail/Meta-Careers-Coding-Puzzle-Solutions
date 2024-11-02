@@ -22,8 +22,7 @@ $0 \leq G_{i,j} \leq 1$
 
 Top level function for the problem.
 
-1. Count the number of cells containing ships ($G_{i,j}=1$). We'll refer to this value as ```ship_count```.
-2. Return the value of ```ship_count / (R * C)```.
+Count the number of cells containing ships ($G_{i,j}=1$) and divide this by the total number of cells in the grid.
 
 ### Key Insights and Optimizations
 
