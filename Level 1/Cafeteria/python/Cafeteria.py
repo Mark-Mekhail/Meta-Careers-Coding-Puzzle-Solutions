@@ -3,9 +3,8 @@ from typing import List
 def getMaxAdditionalDinersCount(N: int, K: int, M: int, S: List[int]) -> int:
     S.sort()
 
-    cur_start = 1
     additional_diners_count = 0
-
+    cur_start = 1
     for i in range(M):
         cur_seat = S[i]
 
