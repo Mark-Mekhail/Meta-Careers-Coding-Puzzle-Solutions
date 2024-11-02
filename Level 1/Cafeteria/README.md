@@ -36,6 +36,10 @@ Top level function for the problem.
 4. Calculate the number of people that can be seated between the occupied seat with the greatest seat number in $S$ and $N$. Add this value to ```additional_diners```.
 5. Return ```additional_diners```.
 
+#### getMaxDinersBetweenSeats(startPos, endPos, K)
+
+Given a starting seat position ```startPos``` and an ending seat position ```endPos```, returns the maximum number of socially-distanced seats in the interval [```startPos```, ```endPos```] that can be occupied assuming that the seats at ```startPos``` and ```endPos``` are socially distanced from occupied seats before and after them.
+
 ### Key Insights and Optimizations
 
 - Between the previously calculated next occupiable seat position $i$ and the following occupied seat (or last seat) $j$, $(j-i) \over (K+1)$ people can be seated without violating social distancing rules. 

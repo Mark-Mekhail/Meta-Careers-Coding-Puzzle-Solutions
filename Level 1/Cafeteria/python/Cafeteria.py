@@ -1,25 +1,25 @@
 from typing import List
+from math import ceil
 
 def getMaxAdditionalDinersCount(N: int, K: int, M: int, S: List[int]) -> int:
     S.sort()
 
-    additional_diners_count = 0
-    cur_start = 1
+    additionalDiners = 0
+    nextOccupiableSeat = 1
     for i in range(M):
-        cur_seat = S[i]
+        curSeat = S[i]
 
-        free_seats = cur_seat - K - cur_start
-        if free_seats > 0:
-            additional_diners_count += free_seats // (K + 1)
-            if free_seats % (K + 1) > 0:
-                additional_diners_count += 1
+        additionalDiners += getMaxDinersBetweenSeats(nextOccupiableSeat, curSeat - K - 1, K)
 
-        cur_start = cur_seat + K + 1
+        # Set nextOccupiableSeat to the next socially distanced seat after the current seat
+        nextOccupiableSeat = curSeat + K + 1
 
-    if N + 1 > cur_start:
-        free_seats = N + 1 - cur_start
-        additional_diners_count += free_seats // (K + 1)
-        if free_seats % (K + 1) > 0:
-            additional_diners_count += 1
+    # Add the number of diners that can be seated between the last occupied seat and the last seat
+    additionalDiners += getMaxDinersBetweenSeats(nextOccupiableSeat, N, K)
 
-    return additional_diners_count
+    return additionalDiners
+
+# Determine the maximum number of diners that can be seated between two seat positions
+def getMaxDinersBetweenSeats(startPos: int, endPos: int, K: int) -> int:
+    num_seats = endPos - startPos + 1
+    return ceil(num_seats / (K + 1)) if num_seats > 0 else 0
