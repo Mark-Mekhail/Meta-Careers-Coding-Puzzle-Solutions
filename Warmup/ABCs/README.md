@@ -16,9 +16,9 @@ $1 \leq A,B,C \leq 100$
 
 #### getSum(A, B, C)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-Simply returns $A$ + $B$ + $C$, which is trivial.
+Implementation is straightforward.
 
 ### Key Insights and Optimizations
 

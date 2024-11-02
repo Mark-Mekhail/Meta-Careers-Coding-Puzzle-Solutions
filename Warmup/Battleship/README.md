@@ -20,7 +20,7 @@ $0 \leq G_{i,j} \leq 1$
 
 #### getHitProbability(R, C, G)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
 Count the number of cells containing ships ($G_{i,j}=1$) and divide this by the total number of cells in the grid.
 

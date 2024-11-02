@@ -18,9 +18,9 @@ $C _i \in \{\text{"A","B"}\}$
 
 #### getWrongAnswers(N, C)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-Creates the wrong answer string, as defined in the puzzle description, which is a trivial problem.
+Implementation is straightforward.
 
 ### Key Insights and Optimizations
 
