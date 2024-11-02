@@ -21,17 +21,14 @@ def getMinProblemCount(N: int, S: List[int]) -> int:
     ones = 0
     twos = 0
     if has_two_remainder:
+        twos = 1
         if has_one:
             ones = 1
-            twos = 1
         elif has_one_remainder:
-            if second_max == max_score - 1 and max_score % 3 == 1:
-                twos = 1
+            if second_max == max_score - 1 and second_max % 3 == 0:
                 ones = 1
             else:
-                twos = 2
-        else:
-            twos = 1
+                twos += 1
     elif has_one_remainder or has_one:
         ones = 1
 
