@@ -1,15 +1,17 @@
 from typing import List
-import math
 
 def getSecondsRequired(N: int, F: int, P: List[int]) -> int:
     P.sort()
     
-    first_frog_index = P[0]
-    seconds = 0
+    firstFrogPos = P[0]
+    secondsRequired = 0
     for i in range(1, F):
-        if P[i] > first_frog_index + i:
-            seconds += P[i] - first_frog_index
-            first_frog_index = P[i]
-    seconds += N - first_frog_index
+        # If the current frog is ahead of the chain of frogs connected to the first frog, add the time for all frogs in the chain hop over the current frog
+        if P[i] > firstFrogPos + i:
+            secondsRequired += P[i] - firstFrogPos
+            firstFrogPos = P[i]
+
+    # Add the time needed for all remaining frogs to hop to shore
+    secondsRequired += N - firstFrogPos
     
-    return seconds
+    return secondsRequired

@@ -27,15 +27,10 @@ $1 \leq K \leq 10^{12}$
 
 #### getSecondsElapsed(C, N, A, B, K)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Create a variable ```circumference_tunnel_time``` and set it to the sum of the lengths of all tunnels.
-2. Sort $A$ and $B$ such that the $i\text{th}$ tunnel starts and ends before tunnel $i+1$ for all $i$.
-3. Set the variable ```total_seconds_traveled``` to $\text{floor}(K /$ ```circumference_tunnel_time``` $) \times C$ and ```remaining_time``` to the remainder of $K$ when divided by ```circumference_tunnel_time```.
-4. If ```remaining_time``` $=0$, return ```total_seconds_traveled``` $-C + B_{N-1}$.
-5. Go through the tunnels $i$ in order. On each iteration, subtract the length of the tunnel from ```remaining_time```. If this causes ```remaining_time``` to reach or fall below $0$, return ```total_seconds_traveled``` $+ B_i +$ ```remaining_time```.
-
+Determine the sum of the lengths of the tunnels covering the track. Using this value, calculate the number of full rotations $R$ that the train can take on the track without exceeding $K$ time under tunnels. Finally, go through all tunnel positions in order of start position and determine the position $p$ at which the train will meet $K$ seconds of tunnel time. Return $R \times C + p$.
 
 ### Key Insights and Optimizations
 
-- If the total length of all tunnels in the track is ```circumference_tunnel_time```, we know that the train can will circle around all tunnels in the track $R = \text{floor}(K - 1 /$ ```circumference_tunnel_time``` $)$ times. Giving us a total travel time of $R \times C$ before the last trip around the track. All we need to do now is determine where along the track the train will have reached the target tunnel time and add this position to $R \times C$ to get the total time elapsed.
+- If the total length of all tunnels in the track is $L$, we know that the train will circle around all tunnels in the track $R = \text{floor}({K - 1 \over L})$ times. Giving us a total travel time of $R \times C$ before the last trip around the track. All we need to do now is determine where along the track the train will have reached the target tunnel time and add this position to $R \times C$ to get the total time elapsed.

@@ -24,13 +24,9 @@ $1 \leq P_i \leq N - 1$
 
 #### getSecondsRequired(N, F, P)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Sort $P$ in ascending order.
-2. Initialize the variable ```seconds``` to 0 and ```first_frog_index``` to $P_0$.
-3. Go over the starting positions $P_i$ in $P$ in order. For each position $P_i$, if $P_i$ is greater than ```first_frog_index``` $+ i$, add $P_i -$ ```first_frog_index``` to ```seconds``` and set ```first_frog_index``` $= P_i$.
-4. Add $N-$ ```first_frog_index``` to ```seconds```.
-5. Return ```seconds```.
+Go through all frogs in increasing order of starting position. At each iteration $i$, if the frog at starting position $P_i$ is ahead of the chain of adjacent frogs including the frog from $P_0$, calculate the minimum amount of time needed for all these frogs to hop over the current frog at position $P_i$. At the end, calculate the amount of time required for all frogs not yet on the shore to reach the shore. Return the sum of all these calculated times.
 
 ### Key Insights and Optimizations
 

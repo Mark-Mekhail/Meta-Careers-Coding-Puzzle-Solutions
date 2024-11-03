@@ -26,13 +26,22 @@ $1 \leq X \leq Y \leq N$
 
 #### getArtisticPhotographCount(N, C, X, Y)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Start by populating two lists $P\text{s}$ and $B\text{s}$ which store at each index $i$ the total number of occurences of the letter "P" and "B", respectively, in the first $i$ letters of $C$.
-2. Using $P\text{s}$ and $B\text{s}$, populate two new lists $AP\text{s}$ and $AB\text{s}$ that store, at each index $i$, the total number of distinct pairs of actors followed by a photographer and backdrop, respectively, within $X$ and $Y$ cells (from the definition of *artistic*) of the actor where the actor is in a cell $j \leq i$. 
-3. Finally, for each cell in $C$, count the number of distinct artistic configurations possible such that the current cell holds the photographer/actor with the lowest index in the configuration. Add this count to a running total.
+Go through values of $i$ where $0 \leq i < N$, in order. At each iteration, if $C_i$ contains a photographer or backdrop count the number of artistic photographs that can be created where $C_i$ is the first cell in the photograph. Return the sum of all these counts.
+
+#### getCumulativeArtisticActorCharacterCounts(N, C, X, Y, char)
+
+*Creates a list $L$ of cumulative counts of pairs of actors at indexes $X \leq j \leq i$ followed by a given character specified by ```char``` within $C_{j+X, j+Y}.*
+
+Create a list $L$. Go through values of $i$ where $0 \leq i < N$, in order. At each iteration, set $L_i = L_{i-1}$ and if $C_i =$ "A", add the number of occurences of ```char``` that exist in $C_{i+X...i+Y} to $L_i$. Finally, return $L$.
+
+#### getCumulativeCharCounts(N, C, char)
+
+*Creates a list $L$ of cumulative counts of occurences of ```char``` in $C$, where $L_i$ contains the number of occurences of ```char``` in $C_{0...i}$.*
+
+Implementation is straightforward.
 
 ### Key Insights and Optimizations
 
-- Using $P\text{s}$, we can easily populate $AP\text{s}$ by observing that the number of distinct *artistic* configurations of actors followed by photographers with the actor at cell $i$, which we can call $AP_i$, is simply the number of photographers in cells $(i + X)$...$(i + Y)$ (which can easily be calculated using $P\text{s}$ ) if cell $i$ contains an actor and $0$ otherwise. The cumulative number of such configurations up to cell $i$ is therefore $AP\text{s}[i-1]$ + $AP_i$. The same logic follows for $AB\text{s}$.
-- Step 3 of the high-level solution is easy to complete using $AP\text{s}$ and $AB\text{s}$. All you need to do is check what the cell contains and use the relevant list (if any) to compute the number of *artistic* configurations of actors and photographers/backdrops follow the current cell.
+- An important observation for this solution is that if we have a list $L$ of cumulative counts of a some value in a list $C$, where $L_i$ equals the number of occurences of the value in $C_{0...i}$, the number of occurences of the value in the subinterval $C_{j...k}$ is simply $L_k - L_{j-1}$.

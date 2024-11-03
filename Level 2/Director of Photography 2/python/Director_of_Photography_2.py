@@ -1,36 +1,49 @@
+from typing import List
+
 def getArtisticPhotographCount(N: int, C: str, X: int, Y: int) -> int:
-    count = 0
+    # Get the cumulative counts of distinct pairs of actors and photographers/backdrops within X and Y cells of the actor
+    cumulativeArtisticActorCharacterCounts = {
+        'P': getCumulativeArtisticActorCharacterCounts(N, C, X, Y, 'P'),
+        'B': getCumulativeArtisticActorCharacterCounts(N, C, X, Y, 'B')
+    }
     
-    cumulative_ps = [1 if C[0] == 'P' else 0]
-    cumulative_bs = [1 if C[0] == 'B' else 0]
+    artisticPhotographCount = 0
+    for i in range(N - 2 * X):
+        curChar = C[i]
+        if curChar == 'P' or curChar == 'B':
+            artisticConfigurationCounts = cumulativeArtisticActorCharacterCounts['B' if curChar == 'P' else 'P']
+
+            artisticIntervalStart = min(i + X - 1, N - X - 1)  # Just before the first index that the actor can be in
+            artisticIntervalEnd = min(i + Y, N - X - 1)  # Last index that the actor can be in
+
+            # Add the number of actor-opposite character pairs in the range (artisticIntervalStart, artisticIntervalEnd] to the count
+            artisticPhotographCount += artisticConfigurationCounts[artisticIntervalEnd] - artisticConfigurationCounts[artisticIntervalStart]
+    
+    return artisticPhotographCount
+
+# Creates a list of cumulative counts of distinct pairs of actors followed within X and Y cells by a given character char in a string C
+def getCumulativeArtisticActorCharacterCounts(N: int, C: str, X: int, Y: int, char: str) -> List[int]:
+    cumulativeCharCounts = getCumulativeCharCounts(N, C, char)
+
+    cumulativeArtisticActorCharCounts = [0] * (N - X)
+    for i in range(X, N - X):
+        cumulativeArtisticActorCharCounts[i] = cumulativeArtisticActorCharCounts[i - 1]
+
+        if C[i] == 'A':
+            artisticIntervalStart = min(i + X - 1, N - 1)  # Just before the first index that the character can be in
+            artisticIntervalEnd = min(i + Y, N - 1)  # Last index that the character can be in
+
+            # Add the number of characters in the range (artisticIntervalStart, artisticIntervalEnd] to the cumulative count
+            cumulativeArtisticActorCharCounts[i] += cumulativeCharCounts[artisticIntervalEnd] - cumulativeCharCounts[artisticIntervalStart]
+    
+    return cumulativeArtisticActorCharCounts
+
+# Creates a list of cumulative counts of a given character char in a string C
+def getCumulativeCharCounts(N: int, C: str, char: str) -> List[int]:
+    cumulativeCharCounts = [1 if C[0] == char else 0] * N
     
     for i in range(1, N):
-        cur = C[i]
-        cumulative_ps.append(cumulative_ps[i - 1] + (1 if cur == 'P' else 0))
-        cumulative_bs.append(cumulative_bs[i - 1] + (1 if cur == 'B' else 0))
+        # If the current character is the same as the given character, add 1 to the cumulative count
+        cumulativeCharCounts[i] = cumulativeCharCounts[i - 1] + (C[i] == char)
     
-    cumulative_aps = [0]
-    cumulative_abs = [0]
-    
-    for i in range(1, N - X):
-        cumulative_aps.append(cumulative_aps[i - 1])
-        cumulative_abs.append(cumulative_abs[i - 1])
-        
-        if i >= X and C[i] == 'A':
-            start = min(i + X - 1, N - 1)
-            end = min(i + Y, N - 1)
-            cumulative_aps[i] += cumulative_ps[end] - cumulative_ps[start]
-            cumulative_abs[i] += cumulative_bs[end] - cumulative_bs[start]
-    
-    for i in range(N - 2 * X):
-        cur = C[i]
-        if cur == 'P' or cur == 'B':
-            opposite = 'B' if cur == 'P' else 'P'
-            start = min(i + X - 1, N - X - 1)
-            end = min(i + Y, N - X - 1)
-            if opposite == 'B':
-                count += cumulative_abs[end] - cumulative_abs[start]
-            else:
-                count += cumulative_aps[end] - cumulative_aps[start]
-    
-    return count
+    return cumulativeCharCounts

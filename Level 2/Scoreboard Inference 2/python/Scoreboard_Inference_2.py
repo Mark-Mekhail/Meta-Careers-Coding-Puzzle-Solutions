@@ -1,42 +1,48 @@
 from typing import List
 
 def getMinProblemCount(N: int, S: List[int]) -> int:
-    max_score = 0
-    second_max = 0
-    has_one = False
-    has_one_remainder = False
-    has_two_remainder = False
+    highestScore = 0
+    secondHighestScore = 0
+    containsScoreOf1 = False
+    containsScoreWithOneRemainder = False
+    containsScoreWithTwoRemainder = False
     
     for score in S:
-        if score > max_score:
-            second_max = max_score
-            max_score = score
-        elif score > second_max:
-            second_max = score
+        if score > highestScore:
+            secondHighestScore = highestScore
+            highestScore = score
+        elif score > secondHighestScore and score < highestScore:
+            secondHighestScore = score
         
-        has_one = has_one or (score == 1)
-        has_one_remainder = has_one_remainder or (score > 1 and (score % 3 == 1))
-        has_two_remainder = has_two_remainder or (score % 3 == 2)
+        containsScoreOf1 = containsScoreOf1 or (score == 1)
+        containsScoreWithOneRemainder = containsScoreWithOneRemainder or (score > 1 and (score % 3 == 1))
+        containsScoreWithTwoRemainder = containsScoreWithTwoRemainder or (score % 3 == 2)
 
     ones = 0
     twos = 0
-    if has_two_remainder:
+    if containsScoreWithTwoRemainder:
+        # If there is a score with a remainder of 2, then it is always optimal to have a 2-point problem
         twos = 1
-        if has_one:
+        if containsScoreOf1:
+            # If there is a score of 1, then we must have a 1-point problem
             ones = 1
-        elif has_one_remainder:
-            if second_max == max_score - 1 and second_max % 3 == 0:
+        elif containsScoreWithOneRemainder:
+            if secondHighestScore == highestScore - 1 and secondHighestScore % 3 == 0:
                 ones = 1
             else:
                 twos += 1
-    elif has_one_remainder or has_one:
+    elif containsScoreWithOneRemainder or containsScoreOf1:
+        # If no score has a remainder of 2 but there is a score with a remainder of 1, then it is always optimal to have a 1-point problem
         ones = 1
 
-    threes = max_score // 3
-    remaining_sum = twos * 2 + ones
-    if max_score % 3 == 0 and remaining_sum == 3:
+    threes = highestScore // 3  # Number of 3-point problems needed to reach the highest score
+    remaining_sum = twos * 2 + ones  # Sum of points of problems that are not 3-point problems
+    if highestScore % 3 == 0 and remaining_sum == 3:
+        # If the highest score is a multiple of 3 and the sum of the remaining problems is 3, then we can remove one 3-point problem
         threes -= 1
-    elif max_score % 3 == 1 and remaining_sum == 4:
+    elif highestScore % 3 == 1 and remaining_sum == 4:
+        # If the highest score has a remainder of 1 and the sum of the remaining problems is 4, then we can remove one 3-point problem
         threes -= 1
 
+    # Return the total number of problems needed
     return threes + twos + ones

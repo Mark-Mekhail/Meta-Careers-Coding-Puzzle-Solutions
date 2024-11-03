@@ -32,14 +32,10 @@ $0.0 \leq S \leq 1.0$
 
 #### getMaxExpectedProfit(N, V, C, S)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Initialize a variable ```max_expected_profit``` to a list of $N+1$ zeroes.
-2. Populate ```max_expected_profit``` from the end to the beginning of the list. Perform the following for each cell $i$:
-    1. Initialize a variable ```expected_mail``` to $0$.
-    2. Go through all days $j \geq i$ in order. For each day $j$, update ```expected_mail_value``` to be the expected amount of mail remaining in the mail room on that day assuming mail was last collected on day $i-1$. Use this value to help calculate the maximum expected profit if mail was to be collected on day $j$. Set ```max_expected_profit[i]``` to the maximum of this value and its current value.
-3. Return ```max_expected_profit[0]```.
+Go through all days $0 \leq i < N$ in reverse order (from last to first day). At each iteration, determine the maximum expected profit considering only days $i...N$ by taking the maximum of the expected profits assuming mail was first collected on day $j \geq i$. Return the value found for day $0$.
 
 ### Key Insights and Optimizations
 
-- A dynamic programming (DP) solution helps us solve the problem within the time limit. The DP relation is ```max_expected_profit[i]``` $=\text{max}_{j \geq i}$ {```expected_mail[j]```$+$```max_expected_profit[j+1]```} where ```expected_mail[j]``` is the expected value of all the mail in the mailroom on day $j$ assuming mail was last collected on day $i-1$. Essentially, we take the max expected profit of all days $j  \geq i$ where mail is first collected on day $j$, ignoring any days prior to $i$.
+- A dynamic programming (DP) solution helps us solve the problem within the time limit. The DP relation is $P_i =\text{max}_{j \geq i} \{V_{i...j} + P_{j+1}\} - C$, where $V_{i...j}$ is the expected value of all the mail in the mailroom on day $j$ assuming mail was last collected on day $i-1$. Essentially, we take the max expected profit of all days $j  \geq i$ where mail is first collected on day $j$, ignoring any days prior to $i$.

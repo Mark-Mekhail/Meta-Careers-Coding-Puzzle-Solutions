@@ -27,13 +27,15 @@ $G_{i,j} \in \\{$ ".", "S", "E", "\#", "a"..."z" $\\}$
 
 #### getSecondsRequired(R, C, G)
 
-Top level function for the problem.
+*Top level function for the problem.*
 
-1. Initialize a variable ```portal_cells``` to an empty map.
-2. Go through all cells $G_{i,j}$ in $G$. If $G_{i,j}=$ "S", store $(i,j)$ in a variable ```start_cell```. Otherwise, if $G_{i,j}$ contains a lowercase letter $x$, add $(i,j)$ to the set mapped to by $x$ in ```portal_cells```.
-3. Initialize a variable ```seconds``` to 1.
-4. Perform a breadth-first search (BFS) of $G$ starting at cell ```start_cell```, where each cell $G_{i,j}$ is a node in the graph and an edge exists between every pair of cells that are one second away from each other (i.e. adjacent non-wall cells and portal cells with the same letter). Begin each search iteration (i.e. finding neighbours of all new cells found in the last step) by incrementing ```seconds```. Once an exit cell is reached, return ```seconds```.
-5. If the bfs completes without the function returning, no exit can be reached. Return $-1$.
+Go through all cells in $G$ to find the starting cell position and to populate a map that maps each portal character to all positions containing that portal. Using this information, call **getExitDistance** to find the amount of time needed to get from the starting cell to an exit.
+
+#### getExitDistance(R, C, G, portals, startCells, visitedCells)
+
+*Performs a breadth-first search (BFS) on the grid, starting from startCells, where adjacent cells and cells with the same portal are considered to have edges between them. The number of BFS iterations needed to find an exit, or -1 if no exit is found, is returned.*
+
+Fairly standard BFS-like algorithm with graph equivalencies as mentioned above. On each recursive call of the function, if ```startCells``` is empty then return $-1$ because no exit could be reached. Otherwise, find all unvisited neighbors of cells in ```startCells```. If an exit is a neighbor, return 0. Otherwise, recursively call the function on the set of unvisited neighbours found and use the return value of this call to return an appropriate value.
 
 ### Key Insights and Optimizations
 

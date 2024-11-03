@@ -1,24 +1,28 @@
 from typing import List
 
 def getMinCodeEntryTime(N: int, M: int, C: List[int]) -> int:
-    c_vals = set(C)
-    c_vals.add(1)
+    codeIntegers = set(C)
+    codeIntegers.add(1)
     
-    next_times = {c1: 0 for c1 in c_vals}
+    # Create a dictionary to store the minimum time to enter the code from given lock positions
+    codeEntryTimesFromPos = {codeInteger: 0 for codeInteger in codeIntegers}
 
     for i in range(M - 1, -1, -1):
-        cur_num = C[i]
-        prev_num = C[i - 1] if i > 0 else 1
+        curCodeInteger = C[i]
+        prevCodeInteger = C[i - 1] if i > 0 else 1
         
-        prev_to_cur_rotation_time = get_time_to_rotate(N, prev_num, cur_num)
+        prevToCurRotationTime = getRotationTime(N, prevCodeInteger, curCodeInteger)
         
-        cur_times = {}
-        for c1 in c_vals:
-            cur_times[c1] = min(prev_to_cur_rotation_time + next_times[c1], get_time_to_rotate(N, c1, cur_num) + next_times[prev_num])
+        codeEntryTimesFromPrev = {}
+        for codeInteger in codeIntegers:
+            # Calculate the minimum time needed to enter the code integers from i to M from a given lock position where locks are at positions prevCodeInteger and codeInteger
+            codeEntryTimesFromPrev[codeInteger] = min(prevToCurRotationTime + codeEntryTimesFromPos[codeInteger], getRotationTime(N, codeInteger, curCodeInteger) + codeEntryTimesFromPos[prevCodeInteger])
 
-        next_times = cur_times
+        codeEntryTimesFromPos = codeEntryTimesFromPrev
 
-    return next_times[1]
+    # Return the minimum time needed to enter the code with both locks starting at position 1
+    return codeEntryTimesFromPos[1]
 
-def get_time_to_rotate(N: int, start: int, end: int) -> int:
+# Calculates the minimum time needed to rotate the lock from start to end
+def getRotationTime(N: int, start: int, end: int) -> int:
     return min(abs(end - start), N + min(start, end) - max(start, end))
