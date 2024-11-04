@@ -1,47 +1,49 @@
 from typing import List
-import math
 
 def getMinimumSecondsRequired(N: int, R: List[int], A: int, B: int) -> int:
-    # A is inflation cost, B is deflation cost
-    cost = 0
-    diffs = [0] * N
-    intervals = [0] # start indices of intervals
+    discRadiusDiffs = [0] * N  # Difference between a disc's starting radius and its current radius
+    chainIntervalStarts = [0]  # Start indices of intervals of discs with radii within 1 of adjacent discs in the interval
     for i in range(1, N):
-        # inflate
-        neededSizeDiff = R[i - 1] + 1 - R[i]
-        if neededSizeDiff >= 0:
-            cost += neededSizeDiff * A
-            R[i] += neededSizeDiff
-            diffs[i] = neededSizeDiff
+        # Inflate the ith disc if it is smaller than the previous disc
+        minDiscInflationNeeded = R[i - 1] + 1 - R[i]
+        if minDiscInflationNeeded >= 0:
+            R[i] += minDiscInflationNeeded
+            discRadiusDiffs[i] = minDiscInflationNeeded
         else:
-            intervals.append(i)
+            # The ith disc is in a chain interval by itself
+            chainIntervalStarts.append(i)
         
-        # deflate as long as we save cost
+        # Deflate all discs in the chain interval containing the ith disc as long as it saves total cost
         while True:
-            curIntervalStart = intervals[-1]
-            intervalSize = i + 1 - curIntervalStart
+            curIntervalStartDisc = chainIntervalStarts[-1]
+            curIntervalSize = i + 1 - curIntervalStartDisc
 
-            # count positive and negative diffs
-            posDiffs = [diff for diff in diffs[curIntervalStart: i + 1] if diff > 0]
+            posDiffs = [diff for diff in discRadiusDiffs[curIntervalStartDisc: i + 1] if diff > 0]
+            if not posDiffs:
+                # No discs in the chain interval are inflated so it's pointless to deflate
+                break
+
             posDiffCount = len(posDiffs)
-            negDiffCount = intervalSize - posDiffCount
-            minPosDiff = min(posDiffs) if posDiffs else math.inf
-            minPosDiff = min(minPosDiff, ((R[curIntervalStart] - R[curIntervalStart - 1]) if curIntervalStart > 0 else R[0]) - 1) # minimum amount we can deflate at same cost is min diff of current interval and diff between current interval and previous interval
+            negDiffCount = curIntervalSize - posDiffCount
 
-            costChange = (negDiffCount * B - posDiffCount * A) * minPosDiff  # cost change is cost of deflating what is not inflated minus savings from deflating what was inflated
+            # The amount we can deflate at the same cost/savings per deflation is min diff of current interval and diff between current interval and previous interval
+            minPosDiff = min(posDiffs)
+            minPosDiff = min(minPosDiff, ((R[curIntervalStartDisc] - R[curIntervalStartDisc - 1]) if curIntervalStartDisc > 0 else R[0]) - 1)
+
+            # Cost change is cost of deflating what is not inflated minus savings from deflating what was inflated
+            costChange = (negDiffCount * B - posDiffCount * A) * minPosDiff  
             if costChange >= 0:
-                break  # if we cease to save cost by deflating, stop deflating
+                # If we cease to save cost by deflating, stop deflating
+                break
 
-            # apply cost change
-            cost += costChange
-
-            # deflate
-            for j in range(curIntervalStart, i + 1):
-                diffs[j] -= minPosDiff
+            # Update the radii all of discs in a chain interval with the ith disc
+            for j in range(curIntervalStartDisc, i + 1):
+                discRadiusDiffs[j] -= minPosDiff
                 R[j] -= minPosDiff
 
-            # merge current interval with previous interval if needed
-            if curIntervalStart > 0 and R[curIntervalStart] == R[curIntervalStart - 1] + 1:
-                intervals.pop()
+            # Merge the current interval with the previous interval if needed
+            if curIntervalStartDisc > 0 and R[curIntervalStartDisc] == R[curIntervalStartDisc - 1] + 1:
+                chainIntervalStarts.pop()
 
-    return cost
+    # Calculate the total cost of inflating and deflating discs
+    return sum([diff * A if diff > 0 else abs(diff * B) for diff in discRadiusDiffs])
