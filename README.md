@@ -40,7 +40,7 @@ The solutions included in this repo pass all testcases provided by Meta, includi
 ### Level 3
 | Puzzle Name               | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
 | :-----------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
-| Boss Fight                |                     | :heavy_check_mark:  |                     |                     |                     |
+| Boss Fight                | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
 | Rabbit Hole 2             |                     | :heavy_check_mark:  |                     |                     |                     |
 | Slippery Trip             |                     | :heavy_check_mark:  |                     |                     |                     |
 | Stack Stabilization 2     |                     | :heavy_check_mark:  |                     |                     |                     |
