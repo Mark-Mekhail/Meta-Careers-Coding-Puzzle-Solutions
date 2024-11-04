@@ -26,4 +26,18 @@ $G_{i,j} \in \{\text{".", "*", ">", "v"}\}$
 
 ## Approach
 
-TODO
+### High-Level Solution
+
+#### getMaxCollectableCoins(R, C, G)
+
+*Top level function for the problem.*
+
+Go through all rows in the grid in order from top to bottom. When processing each row, find the maximum number of coins that can be collected before either moving down a row or ending on the row (traveling forever on the row). Use these values to update ```max_ending_row_coint_count``` and ```running_coint_count```, which store the maximum number of coins that can be collected after getting stuck at or passing the given row, respectively. Stop after the last row or a row full of ">" characters is reached and return the maximum of ```max_ending_row_coint_count``` and ```running_coint_count```.
+
+### Key Insights and Optimizations
+
+- Moving down to a new row you will end doing one of the following:
+    - Passing through a single ".", "v" and continuing downwards without picking up a coin.
+    - Passing through a cell that contains a coin, picking up the coin, and continuing downwards.
+    - Reaching a ">" cell and continuing rightwards, picking up any coins that appear along the way before reaching a "v" cell and continuing downwards or staying on the row forever if no "v" cell exists in the row. 
+- The maximum number of coins that can be collected up to a given row is equal to the maximum number of coins that could be collected up to the previous row without getting stuck at that row plus the maximum number of coins that can be collected at that row if dropped at any given cell.
