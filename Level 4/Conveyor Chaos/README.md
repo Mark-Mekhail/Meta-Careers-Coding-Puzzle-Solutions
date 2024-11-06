@@ -62,4 +62,8 @@ Implementation is fairly straightforward.
 
 ### Key Insights and Optimizations
 
-- TODO
+- The probability that any given conveyor will be the first conveyor that the package lands on is equal to the uncovered (by higher conveyors) length of the conveyor divided by the total length of the region in which the package might fall. 
+- The probability that the package will land on any given conveyor is equal to the sum of the probability that it is the first conveyor a package lands on as well as the probabilities that it falls off of each unobstructed (by higher conveyors) conveyor endpoint above it that overlaps with the conveyor, assuming all conveyors run in a random direction.
+- The expected horizontal movement of a package that falls on a given conveyor running in a random direction is equal to half the sum of the length of the conveyor and the expected horizontal movements of the package assuming it falls off of each end of the conveyor (0 if it lands to the ground, otherwise the expected horizontal movement of the conveyor it lands on). 
+- The expected horizontal movement of the package on a conveyor, assuming it runs in a given direction, is equal to the sum of the probabilities of it landing on any given location of the conveyor times the distance of that location from the endpoint that the conveyor is moving in the direction of.
+- We can calculate the minimum expected horizontal movement of the package by computing the expected movement assuming all conveyors are set to move in a random direction and subtracting the biggest reduction in movement that can be expected by setting any single conveyor to run in an optimal direction. 
