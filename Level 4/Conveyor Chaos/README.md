@@ -28,10 +28,38 @@ $0 \leq A_i < B_i \leq 1{\small,}000{\small,}000$
 
 ## Approach
 
-A high-level overview of my approach is as follows:
-1. Create a list of conveyor objects, sorted in non-increasing order of height
-2. Track which conveyor (if any) is the left/right child of a given conveyor, where the left/right child is the conveyor that a package dropped from the left/right of a given conveyor would land on next.
-3. Track the expected horizontal movement that a package dropped on any given conveyor should experience after reaching the conveyor, assuming direction to be random.
-4. Track the likelihood that a package will land on a given conveyor, assuming all other conveyors have a random direction, as well as the expected horizontal travel distance of a package that lands on the conveyor given that the conveyor is known to move either left or right.
-5. Determine the expected horizontal travel distance of a package assuming all conveyors run at a random direction.
-6. For each conveyor and direction, determine the reduction in expected movement that setting the conveyor to run in a specific direction will result in. Store the greatest of these reductions and subtract this from the formerly determined expected travel distance.
+### High-Level Solution
+
+#### getMinExpectedHorizontalTravelDistance(N, H, A, B)
+
+*Top level function for the problem.*
+
+Create a sorted (in non-ascending order of height) list of conveyor objects (refer to the [Python solution](./python/Conveyor_Chaos.py) for a description of the Conveyor class). Use the functions below to populate the objects. Once all conveyor objects have had their fields populated, go through each conveyor and track the sum of the expected horizontal movement of the package on each conveyor assuming it runs in a random direction as well as the reduction in movement assuming the conveyor is set to run in a single direction. Subtract the largest reduction found from the computed sum to get the smallest possible expected movement and return this value.
+
+#### populateConveyorRelationships(conveyors)
+
+*Given a sorted list of conveyors, determines which conveyor a package from a given conveyor will land on if dropped from either end of the conveyor, which we refer to as a child (left or right depends on which end of the conveyor the child gets packages from). All conveyors will be populated with this information after the function completes execution.*
+
+Go through the conveyors in order and for each higher conveyor that hasn't had its child information populated already, check if packages from these higher conveyors will land on the current conveyor. If so, we know that the current conveyor is a child of the higher conveyor so track this information in the object representing the higher conveyor.
+
+#### populateConveyorExpectedHorizontals(conveyors)
+
+*Given a sorted list of conveyors with conveyor-child relationships already populated, calculates the expected horizontal movement that a package dropped on the conveyor will experience assuming all conveyors have a random direction. All conveyors will be populated with this information after the function completes execution.*
+
+Go through conveyors in reverse order (from lowest to highest) and calculate the expected horizontal movement of a package dropped on the conveyor using its size and the already computed (because they must be lower than the current conveyor) value of the expected movement from its children.
+
+#### populateConveyorMovementExpectations(conveyors)
+
+*Given a sorted list of conveyors with conveyor-child relationship information already populated, populates conveyor objects with the expected horizontal movement of the package on the conveyor, assuming the conveyor operates in either direction, as well as the probability that the package lands on the conveyor.*
+
+Go through the conveyors in order and determine the probability that a probability that the package falls directly on the conveyor. Add this probability to the probability that it falls from another conveyor onto the current conveyor and use it to update the probability that either of its child conveyors has the package land on it from the current conveyor. 
+
+#### getOverlappingIntervals(intervals, x1, x2)
+
+*Given a sorted list of intervals (with a start and end value) ```intervals```, returns a subset of the intervals that overlap the interval (x1, x2).*
+
+Implementation is fairly straightforward.
+
+### Key Insights and Optimizations
+
+- TODO

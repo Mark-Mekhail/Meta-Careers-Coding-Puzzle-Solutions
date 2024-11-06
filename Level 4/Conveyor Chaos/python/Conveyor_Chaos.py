@@ -61,66 +61,6 @@ def getMinExpectedHorizontalTravelDistance(N: int, H: List[int], A: List[int], B
     
     # Return the expected horizontal movement of the package minus the best possible reduction in expected horizontal movement by setting a single conveyor's direction to the optimal direction
     return expectedHorizontalMovement - bestPossibleMovementReduction
-
-
-def populateConveyorMovementExpectations(conveyors: SortedList):
-    packageDropIntervals = SortedKeyList([(0, CENTER_WIDTH)], key=lambda x: x[0])  # Tracks the intervals that a higher conveyor has not yet covered
-    dropoffPoints = SortedList([])  # Tracks the conveyor endpoints that a higher conveyor has not yet overlapped
-    packageProbabilityAtDropoffs = {}  # Maps a dropoff point to the probability that a package will be dropped at that point
-    for conveyor in conveyors:
-        x1, x2 = conveyor.x1, conveyor.x2
-
-        # Go through all uncovered intervals that the current conveyor overlaps with
-        for interval in list(getOverlappingIntervals(packageDropIntervals, x1, x2)):
-            intervalStart, intervalEnd = interval
-
-            if intervalStart < x1:
-                # If the interval starts before the current conveyor, split the interval into two intervals
-                prevInterval = (intervalStart, x1)
-                packageDropIntervals.add(prevInterval)
-                intervalStart = x1
-            
-            if intervalEnd > x2:
-                # If the interval ends after the current conveyor, split the interval into two intervals
-                nextInterval = (x2, intervalEnd)
-                packageDropIntervals.add(nextInterval)
-                intervalEnd = x2
-
-            intervalPackageProbability = (intervalEnd - intervalStart) / CENTER_WIDTH  # The probability that a package will be dropped in the current interval
-            intervalMidPoint = (intervalStart + intervalEnd) / 2
-
-            conveyor.packageDropProbability += intervalPackageProbability
-
-            # Update the expected horizontal distance that the package will travel on the current conveyor to account for a random drop within the current interval
-            conveyor.expectedLeftHorizontal += intervalPackageProbability * (intervalMidPoint - x1)
-            conveyor.expectedRightHorizontal += intervalPackageProbability * (x2 - intervalMidPoint)
-
-            packageDropIntervals.remove(interval)
-
-        # Go through all dropoff points that the current conveyor overlaps
-        for dropoffPoint in list(dropoffPoints.irange(x1, x2, inclusive=(False, False))):
-            # Add the probability that a package will be dropped at the current dropoff point to the current conveyor's package drop probability
-            packageProbabilityAtDropoff = packageProbabilityAtDropoffs.pop(dropoffPoint)
-            conveyor.packageDropProbability += packageProbabilityAtDropoff
-
-            # Update the expected horizontal distance that the package will travel if the conveyor runs in either direction to account for the probability that a package will land from the current dropoff point
-            conveyor.expectedLeftHorizontal += packageProbabilityAtDropoff * abs(dropoffPoint - x1)
-            conveyor.expectedRightHorizontal += packageProbabilityAtDropoff * abs(x2 - dropoffPoint)
-
-            dropoffPoints.remove(dropoffPoint)
-
-        # Add the endpoints of the current conveyor to the list of dropoff points if they are not already in the list
-        if x1 not in packageProbabilityAtDropoffs:
-            dropoffPoints.add(x1)
-            packageProbabilityAtDropoffs[x1] = 0
-        
-        if x2 not in packageProbabilityAtDropoffs:
-            dropoffPoints.add(x2)
-            packageProbabilityAtDropoffs[x2] = 0
-        
-        # The probability that a package will fall off each endpoint of the current conveyor is half the probability that a package will be dropped on the current conveyor
-        packageProbabilityAtDropoffs[x1] += conveyor.packageDropProbability / 2
-        packageProbabilityAtDropoffs[x2] += conveyor.packageDropProbability / 2
     
 # Given a list of conveyors sorted by height in non-ascending order, populates the parent-child relationships between conveyors
 def populateConveyorRelationships(conveyors: SortedList):
@@ -167,13 +107,60 @@ def populateConveyorExpectedHorizontals(conveyors: SortedList):
         if conveyor.rightChild:
             conveyor.expectedHorizontal += conveyor.rightChild.expectedHorizontal / 2
 
+# Calculates the probability that a package will be dropped on each conveyor and the expected horizontal distance that the package will travel on each conveyor for each direction (left, right, or random)
+def populateConveyorMovementExpectations(conveyors: SortedList):
+    packageDropIntervals = SortedKeyList([(0, CENTER_WIDTH)], key=lambda x: x[0])  # Tracks the intervals that a higher conveyor has not yet covered
+    for conveyor in conveyors:
+        x1, x2 = conveyor.x1, conveyor.x2
+
+        # Go through all uncovered intervals that the current conveyor overlaps
+        for interval in list(getOverlappingIntervals(packageDropIntervals, x1, x2)):
+            intervalStart, intervalEnd = interval
+
+            if intervalStart < x1:
+                # If the interval starts before the current conveyor, split the interval into two intervals
+                prevInterval = (intervalStart, x1)
+                packageDropIntervals.add(prevInterval)
+                intervalStart = x1
+            
+            if intervalEnd > x2:
+                # If the interval ends after the current conveyor, split the interval into two intervals
+                nextInterval = (x2, intervalEnd)
+                packageDropIntervals.add(nextInterval)
+                intervalEnd = x2
+
+            intervalPackageProbability = (intervalEnd - intervalStart) / CENTER_WIDTH  # The probability that a package will be dropped in the current interval
+            intervalMidPoint = (intervalStart + intervalEnd) / 2
+
+            conveyor.packageDropProbability += intervalPackageProbability
+
+            # Update the expected horizontal distance that the package will travel on the current conveyor to account for a random drop within the current interval
+            conveyor.expectedLeftHorizontal += intervalPackageProbability * (intervalMidPoint - x1)
+            conveyor.expectedRightHorizontal += intervalPackageProbability * (x2 - intervalMidPoint)
+
+            packageDropIntervals.remove(interval)
+
+        probabilityToChild = conveyor.packageDropProbability / 2
+
+        leftChild = conveyor.leftChild
+        if leftChild:
+            leftChild.packageDropProbability += probabilityToChild
+            leftChild.expectedLeftHorizontal += probabilityToChild * (x1 - leftChild.x1)
+            leftChild.expectedRightHorizontal += probabilityToChild * (leftChild.x2 - x1)
+
+        rightChild = conveyor.rightChild
+        if rightChild:
+            rightChild.packageDropProbability += probabilityToChild
+            rightChild.expectedLeftHorizontal += probabilityToChild * (x2 - rightChild.x1)
+            rightChild.expectedRightHorizontal += probabilityToChild * (rightChild.x2 - x2)
+
 # Given a list of non-overlapping intervals sorted by their start points, returns an iterable of the intervals that overlap with the range (x1, x2)
 def getOverlappingIntervals(intervals: SortedKeyList, x1: int, x2: int) -> Iterable[Tuple[int, int]]:
-    lastOverlappingIntervalIndex = intervals.bisect_key_left(x2)  # The index of the interval with the first start point greater than or equal to max
+    firstIntervalPastX2Index = intervals.bisect_key_left(x2)  # The index of the interval with the first start point greater than or equal to max
 
     # The index of the first interval that overlaps min, or the first interval that starts after min if no intervals overlap min
-    firstOverlappingIntervalIndex = max(intervals.bisect_key_left(x1) - 1, 0)
-    if firstOverlappingIntervalIndex < lastOverlappingIntervalIndex and intervals[firstOverlappingIntervalIndex][1] <= x1:
-        firstOverlappingIntervalIndex += 1
+    firstIntervalOverlappingX1Index = max(intervals.bisect_key_left(x1) - 1, 0)
+    if firstIntervalOverlappingX1Index < firstIntervalPastX2Index and intervals[firstIntervalOverlappingX1Index][1] <= x1:
+        firstIntervalOverlappingX1Index += 1
 
-    return intervals.islice(firstOverlappingIntervalIndex, lastOverlappingIntervalIndex)
+    return intervals.islice(firstIntervalOverlappingX1Index, firstIntervalPastX2Index)
