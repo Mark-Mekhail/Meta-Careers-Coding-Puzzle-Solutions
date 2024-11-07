@@ -12,6 +12,12 @@ At this point, there is a **README** for every puzzle that contains the followin
 - Some notes containing key insights and optimizations informing my approach to solving the problem
 
 ## Progress
+### Introduction
+
+This section illustrates the progress made on creating solution explanations and code solutions in various programming languages for each puzzle.
+
+Note that getting a working solution for each problem was my main priority and that progress on redundant solutions in different languages may be slow.
+
 ### Warmup
 | Puzzle Name               | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
 | :-----------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
