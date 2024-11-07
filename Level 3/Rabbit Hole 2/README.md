@@ -20,9 +20,9 @@ $1 \leq A_i, B_i \leq N$
 
 $A_i \neq B_i $
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMaxVisitableWebpages(N, M, A, B)
 

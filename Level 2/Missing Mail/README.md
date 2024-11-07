@@ -26,9 +26,9 @@ $1 \leq C \leq 1{\small,}000$
 
 $0.0 \leq S \leq 1.0$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMaxExpectedProfit(N, V, C, S)
 

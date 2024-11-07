@@ -22,9 +22,9 @@ $1 \leq M \leq 3{\small,}000$
 
 $1 \leq C_i \leq N$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMinCodeEntryTime(N, M, C)
 

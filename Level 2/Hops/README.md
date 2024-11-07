@@ -18,9 +18,9 @@ $1 \leq F \leq 500{\small,}000$
 
 $1 \leq P_i \leq N - 1$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getSecondsRequired(N, F, P)
 

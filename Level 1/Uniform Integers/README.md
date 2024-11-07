@@ -12,9 +12,9 @@ Given two positive integers $A$ and $B$, determine the number of uniform integer
 
 $1 \leq A \leq B \leq 10^{12}$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getUniformIntegerCountInInterval(A, B)
 

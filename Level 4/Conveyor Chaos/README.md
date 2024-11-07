@@ -26,9 +26,9 @@ $1 \leq H_i \leq 999{\small,}999$
 
 $0 \leq A_i < B_i \leq 1{\small,}000{\small,}000$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMinExpectedHorizontalTravelDistance(N, H, A, B)
 

@@ -20,9 +20,9 @@ $1 \leq L_i \leq N$
 
 $L_i \neq i$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMaxVisitableWebpages(N, L)
 

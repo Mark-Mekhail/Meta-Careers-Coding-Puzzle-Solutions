@@ -16,9 +16,9 @@ $1 \leq L_i \leq 1{\small,}000{\small,}000{\small,}000$
 
 $D_i \in \{\text{U, D, L, R}\}$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getPlusSignCount(N, L, D)
 

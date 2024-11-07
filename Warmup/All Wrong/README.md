@@ -12,9 +12,9 @@ $1 \leq N \leq 100$
 
 $C _i \in \{\text{"A","B"}\}$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getWrongAnswers(N, C)
 

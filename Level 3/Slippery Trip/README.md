@@ -24,9 +24,9 @@ $R*C \leq 800{\small,}000$
 
 $G_{i,j} \in \{\text{".", "*", ">", "v"}\}$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMaxCollectableCoins(R, C, G)
 

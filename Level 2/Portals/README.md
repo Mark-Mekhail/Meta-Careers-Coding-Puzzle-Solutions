@@ -21,9 +21,9 @@ $1 \leq R,C \leq 50$
 
 $G_{i,j} \in \\{$ ".", "S", "E", "\#", "a"..."z" $\\}$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getSecondsRequired(R, C, G)
 

@@ -16,9 +16,9 @@ $1 \leq N \leq 500{\small,}000$
 
 $1 \leq S_i \leq 1{\small,}000{\small,}000{\small,}000$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMinProblemCount(N, S)
 

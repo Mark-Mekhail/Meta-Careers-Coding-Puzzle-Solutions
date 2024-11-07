@@ -21,9 +21,9 @@ $1 \leq A_i < B_i \leq C - 1$
 
 $1 \leq K \leq 10^{12}$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getSecondsElapsed(C, N, A, B, K)
 

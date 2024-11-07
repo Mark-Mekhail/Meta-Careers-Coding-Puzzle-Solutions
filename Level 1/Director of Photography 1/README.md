@@ -20,9 +20,9 @@ $1 \leq N \leq 200$
 
 $1 \leq X \leq Y \leq N$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getArtisticPhotographCount(N, C, X, Y)
 

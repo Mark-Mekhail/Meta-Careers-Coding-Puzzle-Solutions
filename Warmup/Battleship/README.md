@@ -14,9 +14,9 @@ $1 \leq R,C \leq 100$
 
 $0 \leq G_{i,j} \leq 1$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getHitProbability(R, C, G)
 

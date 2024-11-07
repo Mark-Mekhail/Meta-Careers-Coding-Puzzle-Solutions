@@ -22,9 +22,9 @@ $M \leq N$
 
 $1 \leq S_i \leq N$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMaxAdditionalDinersCount(N, K, M, S)
 

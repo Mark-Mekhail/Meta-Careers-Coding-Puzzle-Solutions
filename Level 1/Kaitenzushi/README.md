@@ -18,9 +18,9 @@ $1 \leq K \leq N$
 
 $1 \leq D_i \leq 1{\small,}000{\small,}000$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getMaximumEatenDishCount(N, D, K)
 

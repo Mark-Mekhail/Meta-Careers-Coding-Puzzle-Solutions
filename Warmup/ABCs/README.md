@@ -10,9 +10,9 @@ Your task is to implement the function ```getSum(A, B, C)``` which returns the s
 
 $1 \leq A,B,C \leq 100$
 
-## Approach
+## Solution
 
-### High-Level Solution
+### Function Descriptions and Implementation Approaches
 
 #### getSum(A, B, C)
 
