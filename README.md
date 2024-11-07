@@ -1,10 +1,15 @@
 # Meta-Careers-Coding-Puzzle-Solutions
-## Description
+## Project Overview
 This Repo contains solutions to the coding puzzles provided by [Meta Careers](https://www.metacareers.com/profile/coding_puzzles). Note that you may need to create a profile to access the puzzles. 
 
 These puzzles are categorized by Meta by level of difficulty, with **Warmup** puzzles being the easiest and **Level 4** puzzles being the toughest.
 
 The solutions included in this repo pass all testcases provided by Meta, including the hidden ones.
+
+At this point, there is a **README** for every puzzle that contains the following: 
+- A description of the puzzle (from [Meta Careers](https://www.metacareers.com/profile/coding_puzzles)) 
+- An overview of the functions created to solve subproblems (based on the Python solution) 
+- Some notes containing key insights and optimizations informing my approach to solving the problem
 
 ## Progress
 ### Warmup
@@ -50,3 +55,9 @@ The solutions included in this repo pass all testcases provided by Meta, includi
 | :-----------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
 | Conveyor Chaos            | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
 | Mathematical Art          | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
+
+## Want to Contribute?
+
+Feel free to share suggestions, comments, or criticisms related to the work presented in this repo. 
+
+If you would like to contribute code, please fork this repo and open a pull request with your contribution.
