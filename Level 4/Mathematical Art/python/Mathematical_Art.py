@@ -1,141 +1,120 @@
-from typing import List
+from typing import Callable, List, Tuple
 from sortedcontainers import SortedKeyList, SortedList
+
+# A class representing a line with a fixed coordinate and a start and end coordinate for the other axis
+class Line:
+    start: int       # The start coordinate of the line
+    end: int         # The end coordinate of the line
+    fixedCoord: int  # The coordinate that is fixed for this line
+
+    def __init__(self, start: int, end: int, fixedCoord: int):
+        self.start = start
+        self.end = end
+        self.fixedCoord = fixedCoord
+
+    # Natural order is based on the fixed coordinate and then the start coordinate
+    def __lt__(self, other):
+        if self.fixedCoord != other.fixedCoord:
+            return self.fixedCoord < other.fixedCoord
+        else:
+            return self.start < other.start
   
-
 def getPlusSignCount(N: int, L: List[int], D: str) -> int:
-    verticalLines, horizontalLines = getLineInfo(N, L, D)
-    horizontalLineList = []
-    for y in horizontalLines:
-        for line in horizontalLines[y]:
-            horizontalLineList.append((line[0], line[1], y))
+    # Get the sorted lists of horizontal and vertical stroke lines
+    verticalStrokeLines, horizontalStrokeLines = getStrokeLines(N, L, D)
+
+    # Get the sorted (by various measures) lists of merged vertical and horizontal lines
+    verticalsSortedByXCoord = getSortedMergedLineList(verticalStrokeLines, key=lambda line: line.fixedCoord)
+    horizontalsSortedByStart = getSortedMergedLineList(horizontalStrokeLines, key=lambda line: line.start)
+    horizontalsSortedByEnd = SortedKeyList(horizontalsSortedByStart, key=lambda line: line.end)
     
-    horizontalsByStart = sorted(horizontalLineList, key=lambda x: x[0])
-    horizontalsByEnd = sorted(horizontalLineList, key=lambda x: x[1])
+    numHorizontalLines = len(horizontalsSortedByStart)
     
+    lastOverlappingHorizontalIndex = 0  # The index following the last horizontal line in horizontalLinesByStart found to overlap a given increasing x-coordinate
+    firstOverlappingHorizontalIndex = 0  # The index following the first horizontal line in horizontalLinesByEnd found to overlap a given increasing x-coordinate
+    overlappingHorizontalYCoords = SortedList()  # The y-coordinates of horizonal lines that overlap a given increasing x-coordinate
     plusSignCount = 0
-    horizontalIndices = [0, 0]
-    horizontalYs = SortedList()
-    for x in sorted(verticalLines.keys()):
-        lastHorizontalIndex = horizontalIndices[1]
-        if lastHorizontalIndex < len(horizontalsByStart):
-            lastHorizontal = horizontalsByStart[lastHorizontalIndex]
-            while lastHorizontal[0] < x:
-                horizontalYs.add(lastHorizontal[2])
-                lastHorizontalIndex += 1
-                if lastHorizontalIndex == len(horizontalsByStart):
+    for verticalLine in verticalsSortedByXCoord:
+        # Update the list of y-coordinates of horizontal lines to include any lines that overlap the x-coordinate of the current vertical line but do not overlap that of the previous vertical line
+        if lastOverlappingHorizontalIndex < numHorizontalLines:
+            lastOverlappingHorizontal = horizontalsSortedByStart[lastOverlappingHorizontalIndex]
+
+            while lastOverlappingHorizontal.start < verticalLine.fixedCoord:
+                # Add the y-coordinate of the next horizontal line that overlaps the x-coordinate of the current vertical line 
+                overlappingHorizontalYCoords.add(lastOverlappingHorizontal.fixedCoord)
+                lastOverlappingHorizontalIndex += 1
+                if lastOverlappingHorizontalIndex == numHorizontalLines:
                     break
-                lastHorizontal = horizontalsByStart[lastHorizontalIndex]
-            horizontalIndices[1] = lastHorizontalIndex
+                lastOverlappingHorizontal = horizontalsSortedByStart[lastOverlappingHorizontalIndex]
 
-        firstHorizontalIndex = horizontalIndices[0]
-        if firstHorizontalIndex < len(horizontalsByEnd):
-            firstHorizontal = horizontalsByEnd[firstHorizontalIndex]
-            while firstHorizontal[1] <= x:
-                horizontalYs.remove(firstHorizontal[2])
-                firstHorizontalIndex += 1
-                if firstHorizontalIndex == len(horizontalsByEnd):
+        # Update the list of y-coordinates of horizontal lines to exclude any lines that overlap the x-coordinate of the previous vertical line but do not overlap that of the current vertical line
+        if firstOverlappingHorizontalIndex < numHorizontalLines:
+            firstOverlappingHorizontal = horizontalsSortedByEnd[firstOverlappingHorizontalIndex]
+
+            while firstOverlappingHorizontal.end <= verticalLine.fixedCoord:
+                # Remove the y-coordinate of the next horizontal line that no longer overlaps the x-coordinate of the current vertical line
+                overlappingHorizontalYCoords.remove(firstOverlappingHorizontal.fixedCoord)
+                firstOverlappingHorizontalIndex += 1
+                if firstOverlappingHorizontalIndex == numHorizontalLines:
                     break
-                firstHorizontal = horizontalsByEnd[firstHorizontalIndex]
-            horizontalIndices[0] = firstHorizontalIndex
+                firstOverlappingHorizontal = horizontalsSortedByEnd[firstOverlappingHorizontalIndex]
 
-        for line in verticalLines[x]:
-            start, end = line
-
-            first = horizontalYs.bisect_right(start)
-            last = horizontalYs.bisect_left(end)
-
-            plusSignCount += last - first
+        # Update the count of plus signs based on the number of horizontal lines that overlap the current vertical line
+        plusSignCount += overlappingHorizontalYCoords.bisect_left(verticalLine.end) - overlappingHorizontalYCoords.bisect_right(verticalLine.start)
 
     return plusSignCount
 
+# Returns a tuple of two sorted (according to natural order) lists containing the horizontal and vertical stroke lines, respectively
+def getStrokeLines(N: int, L: List[int], D: str) -> Tuple[SortedList, SortedList]:
+    horizontalStrokeLines = SortedList()
+    verticalStrokeLines = SortedList()
 
-def getLineInfo(N, L, D):
-    curPos = [0, 0]
-    verticalLines = {}  # Maps x-coordinate to a list of vertical lines on that x-coordinate
-    horizontalLines = {}  # Maps y-coordinate to a list of horizontal lines on that y-coordinate
-
-    maxX, maxY = 0, 0
-    minX, minY = 0, 0
+    brushPos = (0,0)
     for i in range(N):
         if i < N - 1 and D[i+1] == D[i]:
+            # If the next stroke is in the same direction, just add the length of the current stroke to that of the next stroke and move on to the next stroke
             L[i+1] += L[i]
             continue
 
-        curX, curY = curPos
-        nextX, nextY = getNextEndpoint(curPos, L[i], D[i])
+        prevBrushPos = brushPos
+        brushPos = getStrokeEndpoint(brushPos, L[i], D[i])
 
-        if nextX == curX:
-            if curX not in verticalLines:
-                verticalLines[curX] = SortedKeyList(key=lambda x: x[0])
-                
-            inlineLines = verticalLines[curX]
-            mergedLineStart = min(curY, nextY)
-            mergedLineEnd = max(curY, nextY)
-            for line in getOverlappingLines(mergedLineStart, mergedLineEnd, inlineLines):
-                inlineLines.remove(line)
-
-                if line[0] < mergedLineStart:
-                    mergedLineStart = line[0]
-                
-                if line[1] > mergedLineEnd:
-                    mergedLineEnd = line[1]
-
-            inlineLines.add((mergedLineStart, mergedLineEnd))
-            
+        # Create and add the new line to the appropriate list based on the orientation of the stroke
+        if prevBrushPos[0] == brushPos[0]:
+            verticalStrokeLines.add(Line(min(prevBrushPos[1], brushPos[1]), max(prevBrushPos[1], brushPos[1]), prevBrushPos[0]))
         else:
-            if curY not in horizontalLines:
-                horizontalLines[curY] = SortedKeyList(key=lambda x: x[0])
-                
-            inlineLines = horizontalLines[curY]
-            mergedLineStart = min(curX, nextX)
-            mergedLineEnd = max(curX, nextX)
-            for line in getOverlappingLines(mergedLineStart, mergedLineEnd, inlineLines):
-                inlineLines.remove(line)
+            horizontalStrokeLines.add(Line(min(prevBrushPos[0], brushPos[0]), max(prevBrushPos[0], brushPos[0]), prevBrushPos[1]))
 
-                if line[0] < mergedLineStart:
-                    mergedLineStart = line[0]
-                
-                if line[1] > mergedLineEnd:
-                    mergedLineEnd = line[1]
+    return horizontalStrokeLines, verticalStrokeLines
 
-            inlineLines.add((mergedLineStart, mergedLineEnd))
+# Given a sorted (by natural order) list of lines with the same orientation, returns a list of lines with overlapping/touching lines merged sorted by the given key
+def getSortedMergedLineList(lines: SortedList, key: Callable[[Line], int]) -> SortedKeyList:
+    mergedLines = SortedKeyList(key=key)
 
-        curPos[0], curPos[1] = nextX, nextY
-        maxX = max(maxX, nextX)
-        maxY = max(maxY, nextY)
-        minX = min(minX, nextX)
-        minY = min(minY, nextY)
+    curMergedLine = Line(lines[0].start, lines[0].end, lines[0].fixedCoord)  # Tracks the resulting line after merging overlapping lines
+    for i in range(1, len(lines)):
+        nextLine = lines[i]
 
-    if maxX in verticalLines:
-        del verticalLines[maxX]
-    
-    if maxY in horizontalLines:
-        del horizontalLines[maxY]
-    
-    if minX in verticalLines:
-        del verticalLines[minX]
+        if curMergedLine.fixedCoord != nextLine.fixedCoord or curMergedLine.end < nextLine.start:
+            # If there are no more lines that overlap with the current merged line, add the current merged line to the list of merged lines and set parameters for the next merged line
+            mergedLines.add(curMergedLine)
+            curMergedLine = Line(nextLine.start, nextLine.end, nextLine.fixedCoord)
+        else:
+            # Update the end coordinate of the current merged line
+            curMergedLine.end = max(curMergedLine.end, nextLine.end)
 
-    if minY in horizontalLines:
-        del horizontalLines[minY]
+    # Add the last merged line to the list of merged lines
+    mergedLines.add(curMergedLine)
 
-    return verticalLines, horizontalLines
+    return mergedLines
 
-
-def getNextEndpoint(curPos, L, D):
-    if D == "U":
-        return (curPos[0], curPos[1] + L)
-    elif D == "D":
-        return (curPos[0], curPos[1] - L)
-    elif D == "L":
-        return (curPos[0] - L, curPos[1])
+# Given the current position, the length of the stroke, and the direction of the stroke, returns the endpoint of the stroke
+def getStrokeEndpoint(brushPos: Tuple[int, int], strokeLen: int, strokeDir: str) -> Tuple[int, int]:
+    if strokeDir == "U":
+        return (brushPos[0], brushPos[1] + strokeLen)
+    elif strokeDir == "D":
+        return (brushPos[0], brushPos[1] - strokeLen)
+    elif strokeDir == "L":
+        return (brushPos[0] - strokeLen, brushPos[1])
     else:
-        return (curPos[0] + L, curPos[1])
-
-
-def getOverlappingLines(low: int, high: int, lines: SortedKeyList):
-    lastOverlappingIndex = lines.bisect_key_right(high)
-    firstOverlappingIndex = max(lines.bisect_key_left(low) - 1, 0)
-    if firstOverlappingIndex < lastOverlappingIndex and lines[firstOverlappingIndex][1] < low:
-        firstOverlappingIndex += 1
-
-    return set(lines.islice(firstOverlappingIndex, lastOverlappingIndex))
+        return (brushPos[0] + strokeLen, brushPos[1])
