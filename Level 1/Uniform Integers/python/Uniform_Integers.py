@@ -9,7 +9,7 @@ def getUniformIntegerCountInInterval(A: int, B: int) -> int:
     return uniformIntegerCount
   
 # Get the smallest uniform integer greater than or equal a given value
-def getNextUniformInteger(floor: int):
+def getNextUniformInteger(floor: int) -> int:
     numDigits = len(str(floor))
     firstDigit = floor // (10 ** (numDigits - 1))
     

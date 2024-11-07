@@ -22,6 +22,6 @@ def getMaxDamageDealt(N: int, H: List[int], D: List[int], B: int) -> float:
     return maxDamageDealt / B
   
 # Calculate the maximum damage dealt by a pair of warriors
-def calculatePairMaxDamage(H: List[int], D: List[int], warrior1, warrior2):
+def calculatePairMaxDamage(H: List[int], D: List[int], warrior1, warrior2) -> int:
     # Max damage dealt by a pair is H1*D2 + H2*D1 + max(H1*D2, H2*D1)
     return H[warrior1] * D[warrior1] + H[warrior2] * D[warrior2] + max(H[warrior1] * D[warrior2], H[warrior2] * D[warrior1])

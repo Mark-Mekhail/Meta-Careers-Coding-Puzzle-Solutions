@@ -1,4 +1,4 @@
-from typing import List, Set, Dict
+from typing import Dict, List, Set, Tuple
 
 def getMaxVisitableWebpages(N: int, M: int, A: List[int], B: List[int]) -> int:
     webpageLinkMap = getWebpageLinkMap(M, A, B)
@@ -89,7 +89,7 @@ def tarjan(startPage: int, webpageLinkMap: Dict[int, Set[int]], lowlinkMap: Dict
         dfsStack.pop()
 
 # Get a map of the links between SCCs and the number of webpages in each SCC
-def getSCCLinkMap(webpageToSCCIndexMap: Dict[int, int], webpageLinkMap: Dict[int, Set[int]]) -> Dict[int, Set[int]]:
+def getSCCLinkMap(webpageToSCCIndexMap: Dict[int, int], webpageLinkMap: Dict[int, Set[int]]) -> Tuple[Dict[int, Set[int]], Dict[int, int]]:
     SCCLinkMap = {}  # Maps a SCC index to the set of indices of SCCs it links to
     SCCSizeMap = {}  # Maps the index of a SCC with multiple webpages to the number of webpages in the SCC
     for page in webpageToSCCIndexMap:
