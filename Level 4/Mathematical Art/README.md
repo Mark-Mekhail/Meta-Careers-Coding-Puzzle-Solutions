@@ -20,12 +20,32 @@ $D_i \in \{\text{U, D, L, R}\}$
 
 ### High-Level Solution
 
-1. Track and store all strokes, combining any strokes aligned on the same axis that overlap
-2. Sort horizontal strokes by the x-coordinate of the leftmost point of the stroke
-3. Map each x-coordinate containing a vertical stroke to a list of vertical strokes at that x position
-4. Go through all vertical strokes and count the number of distinct horizontal strokes that pass through each stroke, adding this count to a total sum of crosses.
+#### getPlusSignCount(N, L, D)
+
+*Top level function for the problem.*
+
+Use the functions below to construct minimal lists of merged (i.e. non-touching) lines in each orientation (horizontal and vertical) that represent all of the lines painted on the canvas by the time the painting has been completed. Next, go through all merged vertical lines in order. For each vertical line, count the horizontal lines that cross the line. Return the sum of the counts of horizontal lines crossing vertical lines.
+
+#### getStrokeLines(N, L, D)
+
+*Returns lists of horizontal and vertical lines representing all strokes made.*
+
+Go through all strokes in order. Add the line drawn by the stroke to the appropriate list of lines according to its orientation (horizontal or vertical). Return the lists of lines drawn.
+
+#### getStrokeEndpoint(brushPos, strokeLen, strokeDir)
+
+*Given the current brush position, a stroke length, and a stroke direction, returns the updated brush position after completing the stroke.*
+
+Implementation is fairly straightforward.
+
+#### getMergedLines(lines, key)
+
+*Given a sorted (according to natural ordering) list of lines ```lines``` and a key function ```key``` for sorting the output list, returns a list of non-overlapping lines created by merging groups of lines in ```lines``` where every line in the group touches at least one other line in the group.*
+
+Go through the lines in order. For each line, determine whether the last merged line in a running list of merged lines ```mergedLines``` touches the current line. If so, expand the merged line to cover the entirety of the current line. Otherwise, create a new merged line that is equivalent to the current line and add it to ```mergedLines```. Return ```mergedLines```.
+
 
 ### Key Insights and Optimizations
 
-- We can simplify the problem and avoid double-counting by "combining" overlapping strokes aligned along the same direction and same fixed coordinate. For example, if one stroke goes up from (0,0) to (0, 5) and another stroke goes down from (0, 1) to (0, -4), we can "combine" the strokes into one strokes that spans (0,5) to (0,-4)
-- If we have two lists of merged horizontal strokes, one sorted by leftmost endpoint and another sorted by rightmost endpoint, we can determine the horizontal strokes that pass through a given x-coordinate by finding the intersection of the elements that start before the x-coordinate and end after the x-coordinate. If we search for this intersection continuously over strictly increasing x-coordinates, at most a single linear pass over both lists is required.
+- We can simplify the problem and avoid double-counting crosses by "combining" touching strokes with the same orientation (horizontal or vertical) with the fixed coordinate. For example, if one stroke goes up from (0,0) to (0,5) and another stroke goes down from (0,1) to (0,-4), we can "combine" the strokes into line that spans (0,5) to (0,-4)
+- If we have two lists of merged horizontal strokes, one sorted by leftmost endpoint, which we can call ```horizontals_by_start``` and another sorted by rightmost endpoint, which we can call ```horizontals_by_end```, we can determine the horizontal strokes that pass through a given x-coordinate by finding the intersection of the elements that start before the x-coordinate in ```horizontals_by_start``` and end after the x-coordinate in ```horizontals_by_end```. If we search for this intersection continuously over strictly increasing x-coordinates, at most a single linear pass over both lists is required because we will add each line to the list at most once (when the x-coordinate first falls within it) and remove it at most once (when the x-coordinate first falls outside of it).

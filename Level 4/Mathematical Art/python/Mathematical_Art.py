@@ -1,5 +1,5 @@
-from typing import Callable, List, Tuple
-from sortedcontainers import SortedKeyList, SortedList
+from typing import List, Tuple
+from sortedcontainers import SortedList
 
 # A class representing a line with a fixed coordinate and a start and end coordinate for the other axis
 class Line:
@@ -23,10 +23,14 @@ def getPlusSignCount(N: int, L: List[int], D: str) -> int:
     # Get the sorted lists of horizontal and vertical stroke lines
     verticalStrokeLines, horizontalStrokeLines = getStrokeLines(N, L, D)
 
+    # Get the lists of merged vertical and horizontal lines
+    mergedVerticalStrokeLines = getMergedLines(verticalStrokeLines)
+    mergedHorizontalStrokeLines = getMergedLines(horizontalStrokeLines)
+
     # Get the sorted (by various measures) lists of merged vertical and horizontal lines
-    verticalsSortedByXCoord = getSortedMergedLineList(verticalStrokeLines, key=lambda line: line.fixedCoord)
-    horizontalsSortedByStart = getSortedMergedLineList(horizontalStrokeLines, key=lambda line: line.start)
-    horizontalsSortedByEnd = SortedKeyList(horizontalsSortedByStart, key=lambda line: line.end)
+    verticalsSortedByXCoord = sorted(mergedVerticalStrokeLines, key=lambda line: line.fixedCoord)
+    horizontalsSortedByStart = sorted(mergedHorizontalStrokeLines, key=lambda line: line.start)
+    horizontalsSortedByEnd = sorted(mergedHorizontalStrokeLines, key=lambda line: line.end)
     
     numHorizontalLines = len(horizontalsSortedByStart)
     
@@ -87,27 +91,6 @@ def getStrokeLines(N: int, L: List[int], D: str) -> Tuple[SortedList, SortedList
 
     return horizontalStrokeLines, verticalStrokeLines
 
-# Given a sorted (by natural order) list of lines with the same orientation, returns a list of lines with overlapping/touching lines merged sorted by the given key
-def getSortedMergedLineList(lines: SortedList, key: Callable[[Line], int]) -> SortedKeyList:
-    mergedLines = SortedKeyList(key=key)
-
-    curMergedLine = Line(lines[0].start, lines[0].end, lines[0].fixedCoord)  # Tracks the resulting line after merging overlapping lines
-    for i in range(1, len(lines)):
-        nextLine = lines[i]
-
-        if curMergedLine.fixedCoord != nextLine.fixedCoord or curMergedLine.end < nextLine.start:
-            # If there are no more lines that overlap with the current merged line, add the current merged line to the list of merged lines and set parameters for the next merged line
-            mergedLines.add(curMergedLine)
-            curMergedLine = Line(nextLine.start, nextLine.end, nextLine.fixedCoord)
-        else:
-            # Update the end coordinate of the current merged line
-            curMergedLine.end = max(curMergedLine.end, nextLine.end)
-
-    # Add the last merged line to the list of merged lines
-    mergedLines.add(curMergedLine)
-
-    return mergedLines
-
 # Given the current position, the length of the stroke, and the direction of the stroke, returns the endpoint of the stroke
 def getStrokeEndpoint(brushPos: Tuple[int, int], strokeLen: int, strokeDir: str) -> Tuple[int, int]:
     if strokeDir == "U":
@@ -118,3 +101,21 @@ def getStrokeEndpoint(brushPos: Tuple[int, int], strokeLen: int, strokeDir: str)
         return (brushPos[0] - strokeLen, brushPos[1])
     else:
         return (brushPos[0] + strokeLen, brushPos[1])
+
+# Given a sorted (by natural order) list of lines with the same orientation, returns a list of lines with overlapping/touching lines merged
+def getMergedLines(lines: SortedList) -> List[Line]:
+    mergedLines = []
+
+    mergedLines.append(Line(lines[0].start, lines[0].end, lines[0].fixedCoord))
+    for i in range(1, len(lines)):
+        nextLine = lines[i]
+        lastMergedLine = mergedLines[-1]
+
+        if lastMergedLine.fixedCoord != nextLine.fixedCoord or lastMergedLine.end < nextLine.start:
+            # If there are no more lines that overlap with the last merged line, add the last merged line to the list of merged lines and set parameters for the next merged line
+            mergedLines.append(Line(nextLine.start, nextLine.end, nextLine.fixedCoord))
+        else:
+            # Update the end coordinate of the current merged line
+            lastMergedLine.end = max(lastMergedLine.end, nextLine.end)
+
+    return mergedLines
