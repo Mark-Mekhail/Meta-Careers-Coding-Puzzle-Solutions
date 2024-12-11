@@ -19,11 +19,11 @@ This section illustrates the progress made on creating solution explanations and
 Note that getting a working solution for each problem was my main priority and that progress on redundant solutions in different languages may be slow.
 
 ### Warmup
-| Puzzle                             | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
-| :--------------------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
-| [ABCs](./Warmup/ABCs/)             | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
-| [All Wrong](./Warmup/All%20Wrong/) | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
-| [Battleship](./Warmup/Battleship/) | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
+| Puzzle                             | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        | Go Solution         |
+| :--------------------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
+| [ABCs](./Warmup/ABCs/)             | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     | :heavy_check_mark:  |
+| [All Wrong](./Warmup/All%20Wrong/) | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     | :heavy_check_mark:  |
+| [Battleship](./Warmup/Battleship/) | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     | :heavy_check_mark:  |
 
 ### Level 1
 | Puzzle                                                                    | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
