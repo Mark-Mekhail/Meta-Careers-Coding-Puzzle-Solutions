@@ -64,6 +64,6 @@ Note that getting a working solution for each problem was my main priority and t
 
 ## Want to Contribute?
 
-Feel free to share suggestions, comments, or criticisms related to the work presented in this repo. 
+Feel free to share suggestions, comments, or criticisms related to the work presented in this repo by starting a [discussion](https://github.com/Mark-Mekhail/Meta-Careers-Coding-Puzzle-Solutions/discussions). 
 
 If you would like to contribute code, please fork this repo and open a pull request with your contribution.
