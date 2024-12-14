@@ -29,7 +29,7 @@ Note that getting a working solution for each problem was my main priority and t
 | Puzzle                                                                    | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        | Go Solution         |
 | :-----------------------------------------------------------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
 | [Cafeteria](./Level%201/Cafeteria/)                                       | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
-| [Director of Photography 1](./Level%201/Director%20of%20Photography%201/) | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |                     |
+| [Director of Photography 1](./Level%201/Director%20of%20Photography%201/) | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  | :heavy_check_mark:  |
 | [Kaitenzushi](./Level%201/Kaitenzushi/)                                   | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |                     |
 | [Rotary Lock 1](./Level%201/Rotary%20Lock%201/)                           | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
 | [Scoreboard Inference 1](./Level%201/Scoreboard%20Inference%201/)         | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
@@ -37,16 +37,16 @@ Note that getting a working solution for each problem was my main priority and t
 | [Uniform Integers](./Level%201/Uniform%20Integers/)                       | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |                     |
 
 ### Level 2
-| Puzzle                                                                    | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        |
-| :-----------------------------------------------------------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
-| [Director of Photography 2](./Level%202/Director%20of%20Photography%202/) | :heavy_check_mark:  | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |
-| [Hops](./Level%202/Hops/)                                                 | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
-| [Missing Mail](./Level%202/Missing%20Mail/)                               | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
-| [Portals](./Level%202/Portals/)                                           | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     | 
-| [Rabbit Hole 1](./Level%202/Rabbit%20Hole%201/)                           | :heavy_check_mark:  | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |
-| [Rotary Lock 2](./Level%202/Rotary%20Lock%202/)                           | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
-| [Scoreboard Inference 2](./Level%202/Scoreboard%20Inference%202/)         | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |
-| [Tunnel Time](./Level%202/Tunnel%20Time/)                                 | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
+| Puzzle                                                                    | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        | Go Solution         |
+| :-----------------------------------------------------------------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: | :-----------------: |
+| [Director of Photography 2](./Level%202/Director%20of%20Photography%202/) | :heavy_check_mark:  | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |                     |
+| [Hops](./Level%202/Hops/)                                                 | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
+| [Missing Mail](./Level%202/Missing%20Mail/)                               | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
+| [Portals](./Level%202/Portals/)                                           | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |                     |
+| [Rabbit Hole 1](./Level%202/Rabbit%20Hole%201/)                           | :heavy_check_mark:  | :heavy_check_mark:  |                     | :heavy_check_mark:  |                     |                     |
+| [Rotary Lock 2](./Level%202/Rotary%20Lock%202/)                           | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |                     |
+| [Scoreboard Inference 2](./Level%202/Scoreboard%20Inference%202/)         | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
+| [Tunnel Time](./Level%202/Tunnel%20Time/)                                 | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |                     |
 
 ### Level 3
 | Puzzle                                                          | Explanation         | Python Solution     | JavaScript Solution | Java Solution       | C++ Solution        | Go Solution         |
