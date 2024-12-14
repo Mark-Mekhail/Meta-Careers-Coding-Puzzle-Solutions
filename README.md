@@ -33,7 +33,7 @@ Note that getting a working solution for each problem was my main priority and t
 | [Kaitenzushi](./Level%201/Kaitenzushi/)                                   | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     | :heavy_check_mark:  |
 | [Rotary Lock 1](./Level%201/Rotary%20Lock%201/)                           | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
 | [Scoreboard Inference 1](./Level%201/Scoreboard%20Inference%201/)         | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
-| [Stack Stabilization 1](./Level%201/Stack%20Stabilization%201/)           | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |
+| [Stack Stabilization 1](./Level%201/Stack%20Stabilization%201/)           | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     | :heavy_check_mark:  |
 | [Uniform Integers](./Level%201/Uniform%20Integers/)                       | :heavy_check_mark:  | :heavy_check_mark:  |                     |                     |                     |                     |
 
 ### Level 2
